@@ -143,7 +143,7 @@
     .hero__inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
     .hero__badge { display: inline-flex; align-items: center; gap: 7px; background: var(--c-blue-light); color: var(--c-blue); font-size: .78rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
     .hero__badge::before { content: ''; width: 7px; height: 7px; background: var(--c-blue-mid); border-radius: 50%; }
-    .hero__title { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.12; color: var(--c-text); margin-bottom: 20px; }
+    .hero__title { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.12; color: var(--c-blue); margin-bottom: 20px; }
     .hero__title em { font-style: italic; color: var(--c-blue); }
     .hero__desc { font-size: 1.05rem; color: var(--c-text-sub); line-height: 1.75; max-width: 420px; margin-bottom: 36px; }
     .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -158,7 +158,7 @@
     .info-card:hover { box-shadow: var(--shadow-md); }
     .info-card__icon { width: 42px; height: 42px; flex-shrink: 0; background: var(--c-blue-light); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; color: var(--c-blue); }
     .info-card__label { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-text-sub); margin-bottom: 4px; }
-    .info-card__value { font-size: 1rem; font-weight: 600; color: var(--c-text); line-height: 1.4; }
+    .info-card__value { font-size: 1rem; font-weight: 500; color: var(--c-text); line-height: 1.4; }
     .info-card__sub { font-size: .82rem; color: var(--c-text-sub); margin-top: 2px; }
 
     /* ── Strip ── */
@@ -212,6 +212,8 @@
     .absence-card__weeks { display: flex; flex-wrap: wrap; gap: 6px; }
     .absence-week { display: inline-flex; align-items: center; gap: 4px; background: var(--c-blue-light); color: var(--c-blue); font-size: .78rem; font-weight: 600; padding: 4px 10px; border-radius: 100px; letter-spacing: .03em; }
     .absence-week::before { content: ''; width: 5px; height: 5px; background: var(--c-blue-mid); border-radius: 50%; }
+    .absence-week--past { opacity: .4; }
+    .absence-week--past::before { opacity: .6; }
 
     /* ── Phone grid ── */
     .phone-section { margin-bottom: 36px; }
@@ -256,7 +258,7 @@
     .contact-row { background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--r-md); padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start; box-shadow: var(--shadow-sm); }
     .contact-row__icon { width: 38px; height: 38px; flex-shrink: 0; background: var(--c-blue-light); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; color: var(--c-blue); }
     .contact-row__label { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-text-sub); margin-bottom: 3px; }
-    .contact-row__value { font-size: .95rem; font-weight: 600; color: var(--c-text); }
+    .contact-row__value { font-size: .95rem; font-weight: 500; color: var(--c-text); }
     .contact-row__value a { color: var(--c-blue); transition: opacity .15s; }
     .contact-row__value a:hover { opacity: .75; }
     .map-wrap { border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--c-border); box-shadow: var(--shadow-md); height: 380px; }
@@ -603,7 +605,7 @@
     <div class="strip__inner">
       <div class="strip__item">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h1.372c.516 0 .967.354 1.094.852l1.062 4.248a1.125 1.125 0 01-.372 1.118l-1.09.909a9.001 9.001 0 004.553 4.553l.909-1.09a1.125 1.125 0 011.118-.372l4.248 1.062c.498.127.852.578.852 1.094V18.75A2.25 2.25 0 0118.75 21C10.125 21 3 13.875 3 5.25z"/></svg>
-        <a href="tel:+4732170790" style="color:#fff; font-weight:600;">32 17 07 90</a>
+        <a href="tel:+4732170790" style="color:#fff;">32 17 07 90</a>
       </div>
       <div class="strip__item">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
@@ -737,10 +739,16 @@
 
     <div class="info-board">
       <article class="info-entry info-entry--notice">
+        <div class="info-entry__date" data-i18n="info_econsult_date">Viktig melding</div>
+        <h3 class="info-entry__title" data-i18n="info_econsult_title">E-konsultasjon midlertidig stengt</h3>
+        <div class="info-entry__body" data-i18n="info_econsult_body">E-konsultasjon er midlertidig stengt for alle våre leger, bortsett fra hos Dr. Jørn Ossum (på grunn av hans reduserte arbeidstid på kontoret). Dette grunnet regjeringens nye bestemmelser.</div>
+      </article>
+
+      <article class="info-entry info-entry--notice">
         <div class="info-entry__date" data-i18n="info1_date">Oppdatert april 2025</div>
         <h3 class="info-entry__title" data-i18n="info1_title">Timebestilling og henvendelser</h3>
         <div class="info-entry__body" data-i18n-html="info1_body">
-          Timebestilling skjer primært via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue); font-weight:500;">Helsenorge ↗</a>. Vi anbefaler at dette benyttes der det er mulig. Alternativt kan du kontakte oss per telefon på <strong>32 17 07 90</strong>.
+          Timebestilling skjer primært via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue); font-weight:500;">Helsenorge ↗</a>. Vi anbefaler at dette benyttes der det er mulig. Alternativt kan du kontakte oss per telefon på 32 17 07 90.
         </div>
       </article>
 
@@ -1117,11 +1125,14 @@ const T = {
   sec_info_lead: {nb:'Her publiserer vi oppdateringer, beskjeder og generell informasjon til pasienter og pårørende.',en:'Here we publish updates, messages and general information for patients and relatives.',ar:'هنا ننشر التحديثات والمعلومات العامة للمرضى وذويهم.',pl:'Tutaj publikujemy aktualizacje i informacje dla pacjentów.',uk:'Тут ми публікуємо оновлення та інформацію для пацієнтів і їх родин.',so:'Halkan waxaan daabacnaa cusbooneysiinta iyo macluumaadka guud.',lt:'Čia skelbiame atnaujinimus ir bendrą informaciją pacientams.'},
   info1_date:  {nb:'Oppdatert april 2025',en:'Updated April 2025',ar:'تحديث أبريل 2025',pl:'Aktualizacja kwiecień 2025',uk:'Оновлено квітень 2025',so:'La cusbooneysiiyay Abriil 2025',lt:'Atnaujinta 2025 m. balandis'},
   info1_title: {nb:'Timebestilling og henvendelser',en:'Appointments and enquiries',ar:'حجز المواعيد والاستفسارات',pl:'Rejestracja i zapytania',uk:'Запис та запити',so:'Ballan qaadashada iyo su\'aalaha',lt:'Registracija ir užklausos'},
-  info1_body:  {nb:'Timebestilling skjer primært via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Vi anbefaler at dette benyttes der det er mulig. Alternativt kan du kontakte oss per telefon på <strong>32 17 07 90</strong>.',en:'Appointments are primarily made via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. We recommend using this where possible. Alternatively, contact us by phone at <strong>32 17 07 90</strong>.',ar:'يتم حجز المواعيد بشكل أساسي عبر <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. نوصي باستخدام هذه الخدمة. بدلاً من ذلك اتصل بنا على <strong>32 17 07 90</strong>.',pl:'Rejestracja odbywa się głównie przez <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Alternatywnie tel.: <strong>32 17 07 90</strong>.',uk:'Запис переважно через <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Також можна зателефонувати: <strong>32 17 07 90</strong>.',so:'Ballanka waxaa ugu horreyn lagu qaadanaa <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Sidoo kale telefoonka: <strong>32 17 07 90</strong>.',lt:'Registracija pirmiausia per <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Taip pat telefonu: <strong>32 17 07 90</strong>.'},
+  info1_body:  {nb:'Timebestilling skjer primært via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Vi anbefaler at dette benyttes der det er mulig. Alternativt kan du kontakte oss per telefon på 32 17 07 90.',en:'Appointments are primarily made via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. We recommend using this where possible. Alternatively, contact us by phone at 32 17 07 90.',ar:'يتم حجز المواعيد بشكل أساسي عبر <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. نوصي باستخدام هذه الخدمة. بدلاً من ذلك اتصل بنا على 32 17 07 90.',pl:'Rejestracja odbywa się głównie przez <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Alternatywnie tel.: 32 17 07 90.',uk:'Запис переважно через <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Також можна зателефонувати: 32 17 07 90.',so:'Ballanka waxaa ugu horreyn lagu qaadanaa <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Sidoo kale telefoonka: 32 17 07 90.',lt:'Registracija pirmiausia per <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Taip pat telefonu: 32 17 07 90.'},
   info2_date:  {nb:'Generell informasjon',en:'General information',ar:'معلومات عامة',pl:'Informacje ogólne',uk:'Загальна інформація',so:'Macluumaadka guud',lt:'Bendroji informacija'},
   info2_title: {nb:'Resepter',en:'Prescriptions',ar:'الوصفات الطبية',pl:'Recepty',uk:'Рецепти',so:'Dawooyinka',lt:'Receptai'},
   info2_body:  {nb:'Vi anbefaler at reseptforespørsler sendes via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Dette bidrar til mer effektiv behandling og reduserer unødvendig telefonkø.',en:'We recommend that prescription requests are sent via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. This contributes to more efficient processing and reduces unnecessary phone queues.',ar:'نوصي بإرسال طلبات الوصفات عبر <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. هذا يساهم في معالجة أكثر كفاءة ويقلل من طوابير الهاتف.',pl:'Zalecamy wysyłanie próśb o recepty przez <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Pomaga to w sprawniejszej obsłudze i ogranicza kolejki telefoniczne.',uk:'Рекомендуємо надсилати запити на рецепти через <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Це сприяє ефективнішому обслуговуванню та скорочує черги.',so:'Waxaan kugula talineynaa inaad codsiyada dawooyinka ku dirto <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Tani waxay ka gaystaa adeeg waxtar badan waxayna yareyneysaa dheereynta telefoonka.',lt:'Rekomenduojame receptų užklausas siųsti per <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Tai padeda efektyviau aptarnauti ir sumažina telefono eilutes.'},
 
+  info_econsult_date: {nb:'Viktig melding',en:'Important notice',ar:'إشعار هام',pl:'Ważna informacja',uk:'Важливе повідомлення',so:'Ogeysiis muhiim ah',lt:'Svarbus pranešimas'},
+  info_econsult_title:{nb:'E-konsultasjon midlertidig stengt',en:'E-consultation temporarily closed',ar:'الاستشارة الإلكترونية مغلقة مؤقتاً',pl:'E-konsultacja tymczasowo zamknięta',uk:'Електронна консультація тимчасово закрита',so:'La-tashiga elektarooniga ah si ku meel gaar ah ayaa loo xidhay',lt:'E. konsultacija laikinai uždaryta'},
+  info_econsult_body: {nb:'E-konsultasjon er midlertidig stengt for alle våre leger, bortsett fra hos Dr. Jørn Ossum (på grunn av hans reduserte arbeidstid på kontoret). Dette grunnet regjeringens nye bestemmelser.',en:'E-consultation is temporarily closed for all our doctors, except with Dr. Jørn Ossum (due to his reduced hours at the office). This is due to the government\'s new regulations.',ar:'الاستشارة الإلكترونية مغلقة مؤقتاً لدى جميع أطبائنا، باستثناء د. يورن أوسوم (بسبب ساعات عمله المخفضة في العيادة). وذلك بسبب اللوائح الحكومية الجديدة.',pl:'E-konsultacja jest tymczasowo zamknięta u wszystkich naszych lekarzy, z wyjątkiem dr. Jørna Ossuma (ze względu na skrócony czas pracy w gabinecie). Powodem są nowe przepisy rządowe.',uk:'Електронна консультація тимчасово закрита у всіх наших лікарів, окрім д-ра Йорна Оссума (через його скорочений робочий час у клініці). Це пов\'язано з новими урядовими постановами.',so:'La-tashiga elektarooniga ah si ku meel gaar ah ayaa uga xiran dhammaan dhakhaatiirteena, marka laga reebo Dr. Jørn Ossum (sababo la xiriira saacadaha shaqadiisa oo la dhimay). Tani waxay ka dhalatay xeerarka cusub ee dowladda.',lt:'E. konsultacija laikinai uždaryta pas visus mūsų gydytojus, išskyrus Dr. Jørn Ossum (dėl jo sutrumpinto darbo laiko kabinete). Taip yra dėl naujų vyriausybės nuostatų.'},
   sec_absence_label:{nb:'Planlegg ditt besøk',en:'Plan your visit',ar:'خطط لزيارتك',pl:'Zaplanuj wizytę',uk:'Плануйте візит',so:'Qorshee booqashadaada',lt:'Planuokite vizitą'},
   sec_absence_title:{nb:'Ferie og fravær',en:'Holidays and absence',ar:'الإجازات والغياب',pl:'Urlopy i nieobecności',uk:'Відпустки та відсутність',so:'Fasaxyada iyo maqnaanshaha',lt:'Atostogos ir neatvykimai'},
   sec_absence_lead: {nb:'Oversikt over planlagte ferier og fravær. Ring oss for siste informasjon.',en:'Overview of planned holidays and absence. Call us for the latest information.',ar:'نظرة عامة على الإجازات المخططة. اتصل بنا للحصول على أحدث المعلومات.',pl:'Przegląd planowanych urlopów. Zadzwoń po najnowsze informacje.',uk:'Огляд запланованих відпусток. Телефонуйте для актуальної інформації.',so:'Dulmarinta fasaxyada la qorsheeyay.',lt:'Planuojamų atostogų apžvalga.'},
@@ -1203,10 +1214,21 @@ function applyTranslations() {
     el.innerHTML = tr(el.getAttribute('data-i18n-html'));
   });
 
-  // Translate week number labels
+  // Translate week number labels + fade past weeks
+  var _now = new Date();
+  var _target = new Date(Date.UTC(_now.getFullYear(), _now.getMonth(), _now.getDate()));
+  var _dayNum = (_target.getUTCDay() + 6) % 7;
+  _target.setUTCDate(_target.getUTCDate() - _dayNum + 3);
+  var _firstThu = new Date(Date.UTC(_target.getUTCFullYear(), 0, 4));
+  var _currentWeek = 1 + Math.round(((_target - _firstThu) / 86400000 - 3 + (_firstThu.getUTCDay() + 6) % 7) / 7);
   document.querySelectorAll('[data-week-num]').forEach(function(el) {
     var num = el.getAttribute('data-week-num');
     el.textContent = tr('week_prefix') + ' ' + num;
+    if (parseInt(num, 10) < _currentWeek) {
+      el.classList.add('absence-week--past');
+    } else {
+      el.classList.remove('absence-week--past');
+    }
   });
 
   // Today's hours
