@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="nb" dir="ltr">
+<head>
+  <link rel="canonical" href="https://flattumlegesenter.com/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flattum Legesenter DA – Hønefoss</title>
+  <meta name="description" content="Flattum Legesenter DA i Hønefoss. 5 fastleger. Hønengata 70, 3515 Hønefoss. Tlf: 32 17 07 90." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+ <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <style>
+    :root {
+      --c-white:      #ffffff;
+      --c-bg:         #f8f9fb;
+      --c-bg-alt:     #eef1f4;
+      --c-border:     #dde2e8;
+      --c-text:       #1e2530;
+      --c-text-sub:   #5a6370;
+      --c-blue:       #2e5f8a;
+      --c-blue-mid:   #3d7ab5;
+      --c-blue-light: #e8f0f8;
+      --c-blue-pale:  #f0f5fb;
+      --c-accent:     #1a4d72;
+      --c-red:        #c0392b;
+      --c-red-light:  #fdf0ef;
+      --c-red-mid:    #e74c3c;
+      --c-amber:      #e67e22;
+      --c-amber-light:#fef5eb;
+      --r-sm: 6px; --r-md: 10px; --r-lg: 16px;
+      --shadow-sm: 0 1px 4px rgba(30,37,48,.07);
+      --shadow-md: 0 4px 18px rgba(30,37,48,.10);
+      --shadow-lg: 0 8px 36px rgba(30,37,48,.12);
+      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-body:  'Outfit', system-ui, sans-serif;
+      --nav-h: 68px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); color: var(--c-text); background: var(--c-bg); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: inherit; }
+    :focus-visible { outline: 2px solid var(--c-blue); outline-offset: 3px; }
+
+
+    /* Doctor presence days */
+    .doctor-card__days { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .doctor-day { display: inline-block; font-size: .7rem; font-weight: 600; padding: 2px 8px; border-radius: 100px; background: var(--c-blue-light); color: var(--c-blue); letter-spacing: .02em; }
+
+    /* RTL support */
+    [dir="rtl"] .nav__inner { flex-direction: row-reverse; }
+    [dir="rtl"] .strip__inner { flex-direction: row-reverse; }
+    [dir="rtl"] .info-card { flex-direction: row-reverse; }
+    [dir="rtl"] .contact-row { flex-direction: row-reverse; }
+    [dir="rtl"] .doctor-card { flex-direction: row-reverse; }
+    [dir="rtl"] .hours-table td:last-child { text-align: left; }
+    [dir="rtl"] .hours-note { border-left: none; border-right: 3px solid var(--c-blue-mid); border-radius: var(--r-sm) 0 0 var(--r-sm); }
+    [dir="rtl"] .info-entry--notice { border-left: none; border-right: 3px solid var(--c-blue-mid); }
+    [dir="rtl"] .phone-card__number { direction: ltr; }
+
+    /* ── Layout ── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .section--alt { background: var(--c-white); }
+    .section__label { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--c-blue-mid); margin-bottom: 10px; }
+    .section__title { font-family: var(--font-serif); font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1.2; color: var(--c-text); margin-bottom: 16px; }
+    .section__lead { font-size: 1.05rem; color: var(--c-text-sub); max-width: 560px; margin-bottom: 48px; }
+    .divider { width: 40px; height: 3px; background: var(--c-blue-mid); border-radius: 2px; margin-bottom: 28px; }
+
+    /* ── Nav ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); background: rgba(255,255,255,.93); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--c-border); transition: box-shadow .25s; }
+    .nav .container { padding-top: 8px; }
+    .nav.scrolled { box-shadow: var(--shadow-md); }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; gap: 8px; }
+    .nav__logo { display: flex; flex-direction: column; gap: 1px; flex-shrink: 0; }
+    .nav__logo-name { font-family: var(--font-body); font-weight: 500; font-style: normal; font-size: 1.12rem; color: var(--c-accent); line-height: 1.1; }
+    .nav__logo-sub { font-family: var(--font-body); font-weight: 400; font-style: normal; font-size: .68rem; letter-spacing: .06em; color: var(--c-text-sub); text-transform: uppercase; }
+    /* ── Mourning ribbon ── */
+    .mourning-ribbon-wrap { position: relative; display: inline-flex; align-items: center; flex-shrink: 0; }
+    .mourning-ribbon-wrap img { display: block; width: 16px; height: auto; cursor: pointer; }
+    .mourning-ribbon-tooltip {
+      position: absolute; top: calc(100% + 9px); left: 50%; transform: translateX(-50%);
+      background: var(--c-text); color: #fff; font-size: .72rem; font-weight: 500;
+      padding: 6px 11px; border-radius: 6px; white-space: nowrap; line-height: 1.3;
+      opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .15s;
+      z-index: 60; box-shadow: var(--shadow-md);
+    }
+    .mourning-ribbon-tooltip::before {
+      content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-bottom-color: var(--c-text);
+    }
+    .mourning-ribbon-wrap:hover .mourning-ribbon-tooltip,
+    .mourning-ribbon-wrap.tooltip-open .mourning-ribbon-tooltip { opacity: 1; visibility: visible; }
+
+    .nav__links { display: flex; gap: 2px; align-items: center; }
+    .nav__links a { padding: 7px 11px; font-size: .85rem; font-weight: 500; color: var(--c-text-sub); border-radius: var(--r-sm); transition: color .18s, background .18s; white-space: nowrap; }
+    .nav__links a:hover, .nav__links a.active { color: var(--c-blue); background: var(--c-blue-pale); }
+    .nav__right { display: flex; align-items: center; gap: 8px; }
+    .nav__phone { display: flex; align-items: center; gap: 7px; font-size: .85rem; font-weight: 600; color: var(--c-blue); padding: 7px 14px; border: 1.5px solid var(--c-blue); border-radius: var(--r-sm); transition: background .18s, color .18s; white-space: nowrap; }
+    .nav__phone:hover { background: var(--c-blue); color: #fff; }
+
+    /* ── Language picker ── */
+    .lang-picker { position: relative; }
+    .lang-btn { display: flex; align-items: center; gap: 5px; padding: 5px 8px 5px 5px; background: none; border: 1.5px solid var(--c-border); border-radius: var(--r-sm); transition: border-color .18s, background .18s, box-shadow .18s; line-height: 1; }
+    .lang-btn:hover { border-color: var(--c-blue-mid); background: var(--c-blue-pale); }
+    .lang-btn.open { border-color: var(--c-blue-mid); background: var(--c-blue-pale); }
+    .lang-btn__flag { width: 22px; height: 16px; border-radius: 2px; display: inline-block; vertical-align: middle; object-fit: cover; }
+    .lang-btn__caret { width: 13px; height: 13px; color: var(--c-text-sub); transition: transform .2s; flex-shrink: 0; }
+    .lang-btn.open .lang-btn__caret { transform: rotate(180deg); }
+    .lang-dropdown { display: none; position: absolute; top: calc(100% + 8px); right: 0; width: 268px; background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); padding: 8px; z-index: 200; }
+    .lang-dropdown.open { display: block; }
+    .lang-dropdown__title { font-size: .67rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--c-text-sub); padding: 4px 8px 8px; display: block; }
+    .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .lang-grid button { display: flex; align-items: center; gap: 9px; padding: 9px 10px; background: none; border: none; border-radius: var(--r-sm); text-align: left; transition: background .15s; cursor: pointer; }
+    .lang-grid button:hover { background: var(--c-bg); }
+    .lang-grid button.active { background: var(--c-blue-pale); outline: 1.5px solid var(--c-blue-mid); }
+    .lang-grid__flag { width: 22px; height: 16px; border-radius: 2px; flex-shrink: 0; object-fit: cover; }
+    .lang-grid__text { display: flex; flex-direction: column; gap: 1px; }
+    .lang-grid__native { font-size: .84rem; font-weight: 600; color: var(--c-text); line-height: 1.2; }
+    .lang-grid button.active .lang-grid__native { color: var(--c-blue); }
+    .lang-disclaimer { font-size: .67rem; color: var(--c-text-sub); padding: 8px 8px 4px; margin-top: 6px; border-top: 1px solid var(--c-border); line-height: 1.5; }
+    .lang-grid__eng { font-size: .7rem; color: var(--c-text-sub); }
+    .lang-flag { width: 20px; height: 14px; border-radius: 2px; vertical-align: middle; object-fit: cover; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; border-radius: var(--r-sm); }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--c-text); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--c-white); border-bottom: 1px solid var(--c-border); padding: 4px 20px 16px; z-index: 99; box-shadow: var(--shadow-md); }
+    .mobile-menu.open { display: block; }
+    .mobile-menu__nav { display: flex; flex-direction: column; }
+    .mobile-menu__nav a { display: flex; align-items: center; justify-content: space-between; padding: 14px 2px; font-size: .96rem; font-weight: 500; color: var(--c-text); border-bottom: 1px solid var(--c-bg-alt); }
+    .mobile-menu__nav a::after { content: ''; width: 7px; height: 7px; border-right: 2px solid var(--c-blue-mid); border-bottom: 2px solid var(--c-blue-mid); transform: rotate(-45deg); flex-shrink: 0; }
+    .mobile-menu__nav a:last-child { border-bottom: none; }
+    .mobile-menu__phones { display: flex; flex-direction: column; padding: 6px 0 2px; border-top: 1px solid var(--c-border); }
+    .mobile-menu__phone { display: flex; align-items: center; gap: 8px; padding: 10px 2px; font-weight: 600; font-size: .88rem; color: var(--c-blue); text-decoration: none; }
+    .mobile-menu__phone-icon { display: flex; flex-shrink: 0; color: var(--c-blue-mid); }
+    .mobile-menu__phone-label { font-size: .72rem; font-weight: 400; color: var(--c-text-sub); margin-left: auto; }
+    .mobile-menu__lang-section { border-top: 1px solid var(--c-border); }
+    .mobile-lang-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 2px; background: none; border: none; font-size: .9rem; font-weight: 500; color: var(--c-text); font-family: inherit; cursor: pointer; }
+    .mobile-lang-toggle__current { display: flex; align-items: center; gap: 8px; }
+    .mobile-lang-flag { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; }
+    #mobileLangCaret { width: 14px; height: 14px; color: var(--c-text-sub); transition: transform .2s; flex-shrink: 0; }
+    .mobile-lang-toggle.open #mobileLangCaret { transform: rotate(180deg); }
+    .mobile-lang-panel { display: none; padding: 4px 2px 12px; }
+    .mobile-lang-panel.open { display: block; }
+    .mobile-menu__privacy { display: block; width: 100%; text-align: left; padding: 12px 2px; font-size: .82rem; font-weight: 400; color: var(--c-text-sub); background: none; border: none; border-top: 1px solid var(--c-border); cursor: pointer; font-family: inherit; }
+
+    /* ── Hero fold (fills the screen down to the blue strip) ── */
+    .hero-fold { display: flex; flex-direction: column; min-height: 100vh; }
+    .hero-fold .hero { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; }
+
+    /* ── Hero ── */
+    .hero { padding-top: calc(var(--nav-h) + 72px); padding-bottom: 80px; background: var(--c-white); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 0; right: 0; width: 55%; height: 100%; background: linear-gradient(135deg, var(--c-blue-pale) 0%, var(--c-blue-light) 100%); clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%); z-index: 0; }
+    .hero__inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .hero__badge { display: inline-flex; align-items: center; gap: 7px; background: var(--c-blue-light); color: var(--c-blue); font-size: .78rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+    .hero__badge::before { content: ''; width: 7px; height: 7px; background: var(--c-blue-mid); border-radius: 50%; }
+    .hero__title { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.12; color: var(--c-blue); margin-bottom: 20px; }
+    .hero__title em { font-style: italic; color: var(--c-blue); }
+    .hero__desc { font-size: 1.05rem; color: var(--c-text-sub); line-height: 1.75; max-width: 420px; margin-bottom: 36px; }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-size: .93rem; font-weight: 600; border-radius: var(--r-sm); border: none; transition: transform .15s, box-shadow .15s, background .18s; }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn--primary { background: var(--c-blue); color: #fff; }
+    .btn--primary:hover { background: var(--c-accent); }
+    .btn--ghost { background: transparent; color: var(--c-blue); border: 1.5px solid var(--c-blue); }
+    .btn--ghost:hover { background: var(--c-blue-pale); }
+    .hero__cards { display: flex; flex-direction: column; gap: 14px; }
+    .info-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--r-md); padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-sm); transition: box-shadow .2s; }
+    .info-card:hover { box-shadow: var(--shadow-md); }
+    .info-card__icon { width: 42px; height: 42px; flex-shrink: 0; background: var(--c-blue-light); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; color: var(--c-blue); }
+    .info-card__label { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-text); margin-bottom: 4px; }
+    .info-card__value { font-size: 1rem; font-weight: 400; color: var(--c-text); line-height: 1.4; }
+    .info-card__sub { font-size: .82rem; color: var(--c-text); margin-top: 2px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .status-dot--open { background: #2e7d32; }
+    .status-dot--closed { background: var(--c-red); }
+
+    /* ── Strip ── */
+    .strip { background: var(--c-blue); padding: 18px 0; color: #fff; }
+    .strip__inner { display: flex; align-items: stretch; justify-content: center; flex-wrap: wrap; }
+    .strip__item { display: flex; align-items: center; gap: 10px; padding: 10px 32px; font-size: .88rem; font-weight: 500; border-right: 1px solid rgba(255,255,255,.2); }
+    .strip__item:last-child { border-right: none; }
+    .strip__item svg { opacity: .8; flex-shrink: 0; }
+
+    /* ── Doctors ── */
+    .doctors__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; align-items: start; }
+    .doctor-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--r-lg); padding: 24px 26px; display: flex; gap: 16px; align-items: flex-start; transition: box-shadow .2s, transform .2s; }
+    .doctor-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .doctor-card__avatar { width: 50px; height: 50px; flex-shrink: 0; border-radius: 50%; background: var(--c-blue-light); display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 1.1rem; color: var(--c-blue); border: 2px solid var(--c-border); }
+    .doctor-card__name { font-family: var(--font-serif); font-size: 1.08rem; color: var(--c-text); margin-bottom: 4px; }
+    .doctor-card__title { font-size: .82rem; color: var(--c-text-sub); line-height: 1.55; }
+
+    /* ── Hours ── */
+    .hours__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 720px; }
+    .hours-block { background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--r-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .hours-block__head { background: var(--c-blue); color: #fff; padding: 13px 22px; font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr { border-bottom: 1px solid var(--c-bg-alt); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 12px 22px; font-size: .91rem; }
+    .hours-table td:first-child { white-space: nowrap; }
+    .hours-table td:last-child { text-align: right; font-weight: 600; color: var(--c-blue); }
+    .hours-table tr.today-row td { background: var(--c-blue-pale); }
+    .hours-table tr.today-row td:last-child { color: var(--c-blue); }
+    .hours-table tr.today-row.closed td:last-child { color: #b5bec9; }
+    .hours-table tr.closed td:last-child { color: #b5bec9; font-weight: 400; }
+    .today-day-cell { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .today-badge { font-size: .68rem; background: var(--c-blue); color: #fff; padding: 1px 7px; border-radius: 100px; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+    .hours-note { margin-top: 20px; padding: 16px 20px; background: var(--c-blue-pale); border-left: 3px solid var(--c-blue-mid); border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: .88rem; color: var(--c-text-sub); max-width: 720px; }
+    .hours-box { margin-top: 16px; padding: 18px 22px; background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--r-md); box-shadow: var(--shadow-sm); }
+    .hours-box__label { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-text-sub); margin-bottom: 8px; }
+    .hours-box p { font-size: .9rem; color: var(--c-text-sub); line-height: 1.7; }
+
+    /* ── Info ── */
+    .info-board { max-width: 720px; }
+    .info-entry { background: var(--c-white); border: 1px solid var(--c-border); border-left: 3px solid var(--c-blue-mid); border-radius: var(--r-md); padding: 26px 28px; margin-bottom: 16px; box-shadow: var(--shadow-sm); }
+    .info-entry__date { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-text-sub); margin-bottom: 8px; }
+    .info-entry__title { font-family: var(--font-serif); font-size: 1.12rem; color: var(--c-text); margin-bottom: 8px; }
+    .info-entry__body { font-size: .91rem; color: var(--c-text-sub); line-height: 1.7; }
+    .info-entry--notice { border-left: 3px solid var(--c-blue-mid); background: var(--c-blue-pale); }
+
+    /* ── Absence cards ── */
+    .absence-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; max-width: 960px; }
+    .absence-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--r-md); padding: 18px 20px; box-shadow: var(--shadow-sm); }
+    .absence-card__name { font-family: var(--font-serif); font-size: 1rem; color: var(--c-text); margin-bottom: 10px; }
+    .absence-card__weeks { display: flex; flex-wrap: wrap; gap: 6px; }
+    .absence-week { display: inline-flex; align-items: center; gap: 4px; background: var(--c-blue-light); color: var(--c-blue); font-size: .78rem; font-weight: 600; padding: 4px 10px; border-radius: 100px; letter-spacing: .03em; }
+    .absence-week::before { content: ''; width: 5px; height: 5px; background: var(--c-blue-mid); border-radius: 50%; }
+    .absence-week--past { opacity: .4; }
+    .absence-week--past::before { opacity: .6; }
+
+    /* ── Phone grid ── */
+    .phone-section { margin-bottom: 36px; }
+    .phone-section__title { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--c-text-sub); margin-bottom: 14px; }
+    .phone-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .phone-card { background: var(--c-white); border: 1px solid var(--c-border); border-left: 3px solid var(--c-border); border-radius: var(--r-md); padding: 18px 20px; display: flex; flex-direction: column; gap: 4px; transition: box-shadow .2s; }
+    .phone-card:hover { box-shadow: var(--shadow-sm); }
+    .phone-card__icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 2px; color: var(--c-text-sub); }
+    .phone-card__label { font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--c-text-sub); }
+    .phone-card__number { font-family: var(--font-body); font-size: 1.05rem; font-weight: 600; line-height: 1.2; letter-spacing: .01em; direction: ltr; color: var(--c-text); }
+    .phone-card__number a { transition: opacity .15s; }
+    .phone-card__number a:hover { opacity: .7; }
+    .phone-card__sub { font-size: .76rem; line-height: 1.5; color: var(--c-text-sub); }
+
+    .phone-card--reception { border-left-color: var(--c-blue-mid); }
+    .phone-card--reception .phone-card__icon { color: var(--c-blue-mid); }
+
+    .phone-card--acute { border-left-color: var(--c-red); }
+    .phone-card--acute .phone-card__icon { color: var(--c-red); }
+
+    .phone-card--legevakt { border-left-color: var(--c-amber); }
+    .phone-card--legevakt .phone-card__icon { color: var(--c-amber); }
+
+    .phone-card--sos { border-left-color: var(--c-red); }
+    .phone-card--sos .phone-card__icon { color: var(--c-red); }
+
+    /* ── Contact ── */
+    .contact__grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 12px; }
+    .contact-row { background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--r-md); padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start; box-shadow: var(--shadow-sm); }
+    .contact-row__icon { width: 38px; height: 38px; flex-shrink: 0; background: var(--c-blue-light); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; color: var(--c-blue); }
+    .contact-row__label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c-text); margin-bottom: 3px; }
+    .contact-row__value { font-size: .95rem; font-weight: 400; color: var(--c-text); }
+    .contact-row__value a { color: var(--c-blue); transition: opacity .15s; }
+    .contact-row__value a:hover { opacity: .75; }
+    .map-wrap { border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--c-border); box-shadow: var(--shadow-md); height: 380px; }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ── Footer ── */
+    .footer { background: var(--c-text); color: rgba(255,255,255,.65); padding: 48px 0 32px; }
+    .footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 28px; }
+    .footer__brand-name { font-family: var(--font-serif); font-size: 1.25rem; color: #fff; margin-bottom: 10px; }
+    .footer__desc { font-size: .84rem; line-height: 1.7; max-width: 260px; }
+    .footer__col-title { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 14px; }
+    .footer__col ul li { margin-bottom: 8px; }
+    .footer__col ul li a { font-size: .86rem; transition: color .15s; }
+    .footer__col ul li a:hover { color: #fff; }
+    .footer__bottom { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; flex-wrap: wrap; gap: 12px; }
+    .footer__fb { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,.7); padding: 7px 14px; border: 1px solid rgba(255,255,255,.2); border-radius: var(--r-sm); font-size: .82rem; font-weight: 500; transition: background .18s, color .18s; }
+    .footer__fb:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+    /* ── Scroll top ── */
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; z-index: 50; width: 44px; height: 44px; background: var(--c-blue); color: #fff; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; }
+    .scroll-top.visible { opacity: 1; pointer-events: all; }
+    .scroll-top:hover { transform: translateY(-3px); }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .phone-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 860px) {
+      .hero-fold { min-height: auto; }
+      .hero-fold .hero { flex: none; }
+      .nav__links, .nav__phone, .lang-picker { display: none; }
+      .hamburger { display: flex; }
+      .hero__inner { grid-template-columns: 1fr; gap: 32px; }
+      .hero::before { width: 100%; height: 45%; top: 55%; clip-path: none; opacity: .4; }
+      .hours__grid { grid-template-columns: 1fr; }
+      .contact__grid { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr; gap: 28px; }
+      .strip__inner { flex-direction: column; align-items: flex-start; padding: 0 16px; }
+      .strip__item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.15); width: 100%; padding: 11px 8px; }
+      .strip__item:last-child { border-bottom: none; }
+      .mobile-menu { max-height: calc(100vh - var(--nav-h)); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    }
+    @media (max-width: 580px) {
+      .strip { display: none; }
+      .container { padding: 0 22px; }
+      .section { padding: 64px 0; }
+      #apningstider,
+      #informasjon { padding-top: 76px; padding-bottom: 76px; }
+      .section__label { margin-bottom: 10px; }
+      .section__title { font-size: 1.5rem; margin-bottom: 20px; }
+      .section__lead { font-size: .93rem; margin-bottom: 36px; line-height: 1.75; }
+      #apningstider .section__lead,
+      #informasjon .section__lead { margin-bottom: 44px; }
+      .divider { margin-bottom: 30px; }
+      .hero { padding-top: calc(var(--nav-h) + 40px); padding-bottom: 48px; }
+      .hero::before { display: none; }
+      .hero__badge { font-size: .7rem; padding: 4px 10px; margin-bottom: 16px; }
+      .hero__title { font-size: 2rem; margin-bottom: 16px; }
+      .hero__desc { font-size: .93rem; margin-bottom: 28px; line-height: 1.6; }
+      .hero__actions { flex-direction: column; gap: 12px; }
+      .hero__actions .btn { width: 100%; justify-content: center; padding: 13px 20px; font-size: .9rem; }
+      .hero__cards { display: none; }
+      .doctors__grid { grid-template-columns: 1fr; gap: 16px; }
+      .doctor-card { padding: 20px 20px; gap: 14px; }
+      .doctor-card__name { font-size: .98rem; }
+      .doctor-card__title { font-size: .78rem; }
+      .hours__grid { gap: 32px; }
+      .hours-block { margin-bottom: 6px; }
+      .hours-block__head { padding: 18px 22px; line-height: 1.35; }
+      .hours-table td { padding: 18px 22px; font-size: .9rem; line-height: 1.55; vertical-align: top; }
+      .hours-note { font-size: .87rem; line-height: 1.75; padding: 22px 22px; margin-top: 28px; }
+      .hours-box { padding: 24px 22px; margin-top: 24px; }
+      .hours-box__label { margin-bottom: 12px; }
+      .hours-box p { line-height: 1.85; }
+      .info-board { display: flex; flex-direction: column; gap: 24px; }
+      .info-entry { padding: 28px 24px; margin-bottom: 0; }
+      .info-entry__date { margin-bottom: 12px; line-height: 1.45; }
+      .info-entry__title { font-size: 1.05rem; margin-bottom: 14px; line-height: 1.45; }
+      .info-entry__body { font-size: .9rem; line-height: 1.85; }
+      .absence-cards { grid-template-columns: 1fr; gap: 12px; }
+      .absence-card { padding: 16px 18px; }
+      .absence-card__name { font-size: .92rem; margin-bottom: 8px; }
+      .phone-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .phone-card { padding: 16px 14px; gap: 6px; }
+      .phone-card__number { font-size: 1.05rem; }
+      .phone-card__label { font-size: .66rem; }
+      .phone-card__sub { font-size: .7rem; }
+      .phone-card__icon { width: 18px; height: 18px; margin-bottom: 2px; }
+      .phone-section { margin-bottom: 32px; }
+      .contact-row { padding: 16px 18px; gap: 12px; }
+      .contact-row__icon { width: 32px; height: 32px; }
+      .map-wrap { height: 240px; }
+      .footer { padding: 40px 0 28px; }
+      .footer__grid { gap: 28px; padding-bottom: 28px; margin-bottom: 22px; }
+      .footer__brand-name { font-size: 1rem; margin-bottom: 8px; }
+      .footer__desc { font-size: .8rem; }
+      .footer__col-title { margin-bottom: 10px; }
+      .footer__col ul li { margin-bottom: 8px; }
+      .footer__col ul li a { font-size: .82rem; }
+      .footer__bottom { font-size: .75rem; }
+      .scroll-top { bottom: 20px; right: 16px; width: 40px; height: 40px; }
+      .mobile-lang__grid button { padding: 7px 12px; font-size: .82rem; min-height: 38px; }
+    }
+    @media (max-width: 400px) {
+      .phone-grid { grid-template-columns: 1fr; gap: 6px; }
+      .phone-card { flex-direction: row; align-items: center; gap: 10px; padding: 11px 12px; }
+      .phone-card__icon { margin-bottom: 0; flex-shrink: 0; width: 18px; height: 18px; }
+      .phone-card__number { font-size: 1.1rem; }
+      .phone-card__sub { font-size: .72rem; }
+    }
+    /* ── Mobile quick info panel (hidden on desktop) ── */
+    .hero__quickinfo { display: none; }
+    @media (max-width: 580px) {
+      .hero__quickinfo {
+        display: block;
+        margin-top: 18px;
+        border: 1.5px solid var(--c-border);
+        border-radius: var(--r-md);
+        background: var(--c-white);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+      }
+      .hero__qi-phone {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 12px 16px;
+        background: var(--c-blue);
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: .02em;
+        text-decoration: none;
+        border-bottom: none;
+      }
+      .hero__qi-rows {
+        padding: 10px 14px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .hero__qi-row {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: .83rem;
+        color: var(--c-text-sub);
+        flex-wrap: nowrap;
+      }
+      .hero__qi-row svg { flex-shrink: 0; color: var(--c-blue-mid); }
+      .hero__qi-label { font-weight: 400; color: var(--c-text); white-space: nowrap; }
+      .hero__qi-detail { color: var(--c-text); }
+      .hero__qi-badge {
+        display: inline-flex;
+        align-items: center;
+        font-size: .73rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 100px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .hero__qi-badge--open  { background: #e8f5e9; color: #2e7d32; }
+      .hero__qi-badge--closed { background: #fce8e6; color: var(--c-red); }
+    }
+    /* ── Privacy modal ── */
+    .privacy-overlay { display: none; position: fixed; inset: 0; background: rgba(10,18,30,.55); z-index: 500; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+    .privacy-overlay.open { display: flex; }
+    .privacy-modal { background: var(--c-white); border-radius: var(--r-lg); max-width: 600px; width: 100%; max-height: 85vh; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); }
+    .privacy-modal__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 24px 28px 16px; border-bottom: 1px solid var(--c-border); flex-shrink: 0; }
+    .privacy-modal__title { font-family: var(--font-serif); font-size: 1.15rem; color: var(--c-text); line-height: 1.3; }
+    .privacy-modal__close { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; flex-shrink: 0; background: var(--c-bg); border: 1px solid var(--c-border); border-radius: var(--r-sm); color: var(--c-text-sub); transition: background .15s; cursor: pointer; }
+    .privacy-modal__close:hover { background: var(--c-bg-alt); color: var(--c-text); }
+    .privacy-modal__body { overflow-y: auto; padding: 22px 28px 28px; -webkit-overflow-scrolling: touch; }
+    .privacy-modal__body p { font-size: .91rem; color: var(--c-text-sub); line-height: 1.75; margin-bottom: 14px; }
+    .privacy-modal__body h3 { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c-text-sub); margin: 18px 0 6px; }
+    .privacy-modal__body a { color: var(--c-blue); }
+    .footer__privacy-btn { background: none; border: none; color: rgba(255,255,255,.55); font-size: .78rem; font-family: inherit; cursor: pointer; padding: 0; transition: color .15s; }
+    .footer__privacy-btn:hover { color: #fff; }
+    @media (max-width: 580px) {
+      .privacy-modal__head { padding: 18px 20px 14px; }
+      .privacy-modal__body { padding: 16px 20px 22px; }
+      .privacy-modal__title { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ────────────────────────────────────────────────────────── -->
+<nav class="nav" id="nav" role="navigation" aria-label="Hovednavigasjon">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="#forside" class="nav__logo">
+        <span class="nav__logo-name">Flattum Legesenter</span>
+        <span class="nav__logo-sub">DA · Hønefoss</span>
+      </a>
+      <span class="mourning-ribbon-wrap" id="mourningRibbonWrap">
+        <img id="mourningRibbonImg" src="data:image/png;base64,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" alt="" title="Til minne om Hans Majestet Kong Harald V" tabindex="0">
+        <span class="mourning-ribbon-tooltip" id="mourningRibbonTooltip" role="tooltip">Til minne om Hans Majestet Kong Harald V</span>
+      </span>
+      <ul class="nav__links" role="list">
+        <li><a href="#forside"      data-i18n="nav_home">Hjem</a></li>
+        <li><a href="#leger"        data-i18n="nav_doctors">Leger</a></li>
+        <li><a href="#apningstider" data-i18n="nav_hours">Åpningstider</a></li>
+        <li><a href="#informasjon"  data-i18n="nav_info">Informasjon</a></li>
+        <li data-feature="absence"><a href="#fravær"       data-i18n="nav_absence">Fravær</a></li>
+        <li><a href="#kontakt"      data-i18n="nav_contact">Kontakt</a></li>
+      </ul>
+      <div class="lang-picker" id="langPicker">
+          <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Velg språk">
+            <img class="lang-btn__flag" id="langBtnFlag" src="" alt="" aria-hidden="true">
+            <svg class="lang-btn__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="lang-dropdown" id="langDropdown" role="listbox">
+            <span class="lang-dropdown__title" data-i18n="lang_label">Språk</span>
+            <div class="lang-grid" id="langGrid"></div>
+            <p class="lang-disclaimer" data-i18n="lang_disclaimer">* Informasjon oversatt til andre språk kan være upresis. Ring oss for oppdatert informasjon.</p>
+          </div>
+      </div>
+      <a href="tel:+4732170790" class="nav__phone">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h1.372c.516 0 .967.354 1.094.852l1.062 4.248a1.125 1.125 0 01-.372 1.118l-1.09.909a9.001 9.001 0 004.553 4.553l.909-1.09a1.125 1.125 0 011.118-.372l4.248 1.062c.498.127.852.578.852 1.094V18.75A2.25 2.25 0 0118.75 21C10.125 21 3 13.875 3 5.25z"/></svg>
+          32 17 07 90
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Åpne meny" aria-expanded="false">
+          <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__nav">
+  <a href="#forside"      onclick="closeMobile()" data-i18n="nav_home">Hjem</a>
+  <a href="#leger"        onclick="closeMobile()" data-i18n="nav_doctors">Leger</a>
+  <a href="#apningstider" onclick="closeMobile()" data-i18n="nav_hours">Åpningstider</a>
+  <a href="#informasjon"  onclick="closeMobile()" data-i18n="nav_info">Informasjon</a>
+  <a href="#fravær" data-feature="absence"      onclick="closeMobile()" data-i18n="nav_absence">Fravær</a>
+  <a href="#kontakt"      onclick="closeMobile()" data-i18n="nav_contact">Kontakt</a>
+  </div>
+  <div class="mobile-menu__phones">
+  <a href="tel:+4732170790" class="mobile-menu__phone">
+    <span class="mobile-menu__phone-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h1.372c.516 0 .967.354 1.094.852l1.062 4.248a1.125 1.125 0 01-.372 1.118l-1.09.909a9.001 9.001 0 004.553 4.553l.909-1.09a1.125 1.125 0 011.118-.372l4.248 1.062c.498.127.852.578.852 1.094V18.75A2.25 2.25 0 0118.75 21C10.125 21 3 13.875 3 5.25z"/></svg></span>
+    <span>32 17 07 90</span><span class="mobile-menu__phone-label" data-i18n="phone_reception_label">Resepsjon</span>
+  </a>
+  <a href="tel:+4732170798" class="mobile-menu__phone">
+    <span class="mobile-menu__phone-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h1.372c.516 0 .967.354 1.094.852l1.062 4.248a1.125 1.125 0 01-.372 1.118l-1.09.909a9.001 9.001 0 004.553 4.553l.909-1.09a1.125 1.125 0 011.118-.372l4.248 1.062c.498.127.852.578.852 1.094V18.75A2.25 2.25 0 0118.75 21C10.125 21 3 13.875 3 5.25z"/></svg></span>
+    <span>32 17 07 98</span><span class="mobile-menu__phone-label" data-i18n="phone_acute_label">Akuttelefon – Flattum</span>
+  </a>
+  </div>
+  <div class="mobile-menu__lang-section">
+    <button class="mobile-lang-toggle" id="mobileLangBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+      <span class="mobile-lang-toggle__current">
+        <img class="mobile-lang-flag" id="mobileLangFlag" src="" alt="" aria-hidden="true">
+        <span id="mobileLangName"></span>
+      </span>
+      <svg class="lang-btn__caret" id="mobileLangCaret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div class="mobile-lang-panel" id="mobileLangPanel">
+      <div class="lang-grid" id="mobileLangGrid"></div>
+    </div>
+  </div>
+  <button class="mobile-menu__privacy" id="privacyBtnMobile" type="button" onclick="closeMobile(); openPrivacy();" data-i18n="privacy_btn">Personvernerklæring</button>
+</div>
+
+<!-- ── Hero ───────────────────────────────────────────────────────── -->
+<div class="hero-fold">
+<section class="hero" id="forside">
+  <div class="container">
+   <div class="hero__inner">
+      <div class="hero__left">
+      <h1 class="hero__title">
+        Flattum<br>
+        <span data-i18n="hero_title2">Legesenter</span>
+      </h1>
+        <p class="hero__desc" data-i18n="hero_desc">
+          Et legesenter med fem fastleger sentralt i Hønefoss. Vi tilbyr trygg og tilgjengelig primærhelsetjeneste for hele familien.
+        </p>
+        <div class="hero__actions">
+          <a href="#kontakt" class="btn btn--primary">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            <span data-i18n="hero_btn_contact">Kontakt oss</span>
+          </a>
+          <a href="#leger" class="btn btn--ghost" data-i18n="hero_btn_doctors">Møt legene</a>
+        </div>
+
+        <!-- Mobile-only quick info strip -->
+        <div class="hero__quickinfo" id="heroQuickInfo">
+          <a href="tel:+4732170790" class="hero__qi-phone">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h1.372c.516 0 .967.354 1.094.852l1.062 4.248a1.125 1.125 0 01-.372 1.118l-1.09.909a9.001 9.001 0 004.553 4.553l.909-1.09a1.125 1.125 0 011.118-.372l4.248 1.062c.498.127.852.578.852 1.094V18.75A2.25 2.25 0 0118.75 21C10.125 21 3 13.875 3 5.25z"/></svg>
+            32 17 07 90
+          </a>
+          <div class="hero__qi-rows">
+            <div class="hero__qi-row">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span id="mobileStatusBadge" class="hero__qi-badge"></span>
+              <span id="mobileOfficeHours" class="hero__qi-detail"></span>
+            </div>
+            <div class="hero__qi-row">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h1.372c.516 0 .967.354 1.094.852l1.062 4.248a1.125 1.125 0 01-.372 1.118l-1.09.909a9.001 9.001 0 004.553 4.553l.909-1.09a1.125 1.125 0 011.118-.372l4.248 1.062c.498.127.852.578.852 1.094V18.75A2.25 2.25 0 0118.75 21C10.125 21 3 13.875 3 5.25z"/></svg>
+              <span class="hero__qi-label" data-i18n="qi_phone_label">Telefonlinje:</span>
+              <span id="mobilePhoneHours" class="hero__qi-detail"></span>
+            </div>
+            <div class="hero__qi-row">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              <span class="hero__qi-detail">Hønengata 70, 3515 Hønefoss</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__cards">
+        <div class="info-card">
+          <div class="info-card__icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          </div>
+          <div>
+            <div class="info-card__label" data-i18n="card_address_label">Adresse</div>
+            <div class="info-card__value" style="color:var(--c-blue);">Hønengata 70</div>
+            <div class="info-card__sub">3515 Hønefoss, Norge</div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card__icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h1.372c.516 0 .967.354 1.094.852l1.062 4.248a1.125 1.125 0 01-.372 1.118l-1.09.909a9.001 9.001 0 004.553 4.553l.909-1.09a1.125 1.125 0 011.118-.372l4.248 1.062c.498.127.852.578.852 1.094V18.75A2.25 2.25 0 0118.75 21C10.125 21 3 13.875 3 5.25z"/></svg>
+          </div>
+          <div>
+            <div class="info-card__label" data-i18n="card_phone_label">Telefon</div>
+            <div class="info-card__value"><a href="tel:+4732170790" style="color:var(--c-blue);">32 17 07 90</a></div>
+            <div class="info-card__sub" id="todayPhoneHours"></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card__icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <div class="info-card__label" style="display:flex; align-items:center; gap:6px;">
+              <span class="status-dot" id="pcStatusDot"></span>
+              <span id="pcTodayLabel" data-i18n="card_hours_label">Åpent i dag</span>
+            </div>
+            <div class="info-card__value" id="todayHours">–</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Strip -->
+<div class="strip" role="complementary">
+  <div class="container">
+    <div class="strip__inner">
+      <div class="strip__item">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h1.372c.516 0 .967.354 1.094.852l1.062 4.248a1.125 1.125 0 01-.372 1.118l-1.09.909a9.001 9.001 0 004.553 4.553l.909-1.09a1.125 1.125 0 011.118-.372l4.248 1.062c.498.127.852.578.852 1.094V18.75A2.25 2.25 0 0118.75 21C10.125 21 3 13.875 3 5.25z"/></svg>
+        <a href="tel:+4732170790" style="color:#fff;">32 17 07 90</a>
+      </div>
+      <div class="strip__item">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+        <a href="mailto:flattum.legesenter@legepost.no" style="color:#fff;">flattum.legesenter@legepost.no</a>
+      </div>
+      <div class="strip__item">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+        Hønengata 70, 3515 Hønefoss
+      </div>
+      <div class="strip__item">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+        <span data-i18n="card_parking_value">Gode bussforbindelser</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── Leger ───────────────────────────────────────────────────────── -->
+<section class="section" id="leger">
+  <div class="container">
+    <div class="section__label" data-i18n="sec_doctors_label">Våre fastleger</div>
+    <h2 class="section__title" data-i18n="sec_doctors_title">Leger ved senteret</h2>
+    <div class="divider" aria-hidden="true"></div>
+    <p class="section__lead" data-i18n="sec_doctors_lead">
+      Flattum Legesenter har fem fastleger med bred faglig kompetanse innen allmennmedisin.
+    </p>
+
+    <div class="doctors__grid">
+
+      <div class="doctor-card">
+        <div>
+          <div class="doctor-card__name">Ljiljana Labus</div>
+          <div class="doctor-card__title"><span data-i18n="doctor_specialist">Allmennlegespesialist</span> · <span data-i18n="doctor_gp">Fastlege</span></div>
+          <div class="doctor-card__days"><span class="doctor-day" data-i18n="doctor_days_ljiljana">Man · Tir · Tor · Fre</span></div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div>
+          <div class="doctor-card__name">Maya Nikolova Yurukova</div>
+          <div class="doctor-card__title"><span data-i18n="doctor_specialist">Allmennlegespesialist</span> · <span data-i18n="doctor_gp">Fastlege</span></div>
+          <div class="doctor-card__days"><span class="doctor-day" data-i18n="doctor_days_maya">Man · Tir · Ons · Fre</span></div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div>
+          <div class="doctor-card__name">Marthe Caroline Svensbråten</div>
+          <div class="doctor-card__title"><span data-i18n="doctor_specialist">Allmennlegespesialist</span> · <span data-i18n="doctor_gp">Fastlege</span></div>
+          <div class="doctor-card__days"><span class="doctor-day" data-i18n="doctor_days_marthe">Tir · Ons · Tor · Fre</span></div>
+        </div>
+      </div>
+
+      <!-- Jørn Ossum -->
+      <div class="doctor-card">
+        <div>
+          <div class="doctor-card__name">Jørn Ossum</div>
+          <div class="doctor-card__title"><span data-i18n="doctor_specialist">Allmennlegespesialist</span> · <span data-i18n="doctor_gp">Fastlege</span></div>
+          <div class="doctor-card__days"><span class="doctor-day" data-i18n="doctor_days_jorn">Man · Tir · Ons · Tor</span></div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div>
+          <div class="doctor-card__name">Svein Ole Innerdal Festøy</div>
+          <div class="doctor-card__title"><span data-i18n="doctor_specialist">Allmennlegespesialist</span> · <span data-i18n="doctor_gp">Fastlege</span></div>
+          <div class="doctor-card__days"><span class="doctor-day" data-i18n="doctor_days_svein">Man · Ons · Tor · Fre</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Åpningstider ────────────────────────────────────────────────── -->
+<section class="section section--alt" id="apningstider">
+  <div class="container">
+    <div class="section__label" data-i18n="sec_hours_label">Besøk oss</div>
+    <h2 class="section__title" data-i18n="sec_hours_title">Åpningstider</h2>
+    <div class="divider" aria-hidden="true"></div>
+    <p class="section__lead" data-i18n="sec_hours_lead">
+      Telefon og resepsjon er åpen i kontortiden. Ved akutte behov utenom åpningstid, kontakt legevakten.
+    </p>
+
+    <div class="hours__grid">
+      <div>
+        <div class="hours-block">
+          <div class="hours-block__head" id="officeHoursHeading" data-i18n="hours_office_title">Kontoret er åpent</div>
+          <table class="hours-table" aria-label="Åpningstider kontor">
+            <tbody id="officeHoursTable">
+              <!-- filled by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="hours-block">
+          <div class="hours-block__head" data-i18n="hours_phone_title">Telefonlinje åpen</div>
+          <table class="hours-table" aria-label="Telefonlinjetider">
+            <tbody>
+              <tr><td data-i18n="hours_monthu">Man–tors</td><td data-i18n="hours_monthu_time">09:00–11:00 og 12:30–13:30</td></tr>
+              <tr><td data-i18n="hours_fri">Fredag</td><td data-i18n="hours_fri_phone_time">09:00–11:00 og 12:30–13:00</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="hours-note" data-i18n-html="hours_emergency">
+          <strong>Legevakt utenom åpningstid:</strong><br>
+          Ring <strong>116 117</strong> for legevakt (døgnåpent). Ved livstruende nødsituasjoner, ring <strong>113</strong>.
+        </div>
+
+        <div class="hours-box">
+          <div class="hours-box__label" data-i18n="hours_booking_label">Timebestilling</div>
+          <p data-i18n-html="hours_booking_text">
+            Timebestilling skjer primært via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue); font-weight:500;">Helsenorge ↗</a>. Vi anbefaler at dette benyttes der det er mulig. Alternativt kan du kontakte oss per telefon.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Informasjon ─────────────────────────────────────────────────── -->
+<section class="section" id="informasjon">
+  <div class="container">
+    <div class="section__label" data-i18n="sec_info_label">Til våre pasienter</div>
+    <h2 class="section__title" data-i18n="sec_info_title">Informasjon</h2>
+    <div class="divider" aria-hidden="true"></div>
+    <p class="section__lead" data-i18n="sec_info_lead">Her publiserer vi oppdateringer, beskjeder og generell informasjon til pasienter og pårørende.</p>
+
+    <div class="info-board">
+      <article class="info-entry">
+        <h3 class="info-entry__title" data-i18n="info_econsult_title">E-konsultasjon midlertidig stengt</h3>
+        <div class="info-entry__body" data-i18n="info_econsult_body">E-konsultasjon er midlertidig stengt for alle våre leger, bortsett fra hos Dr. Jørn Ossum (på grunn av hans reduserte arbeidstid på kontoret). Dette er grunnet regjeringens nye bestemmelser.</div>
+      </article>
+
+      <article class="info-entry">
+        <h3 class="info-entry__title" data-i18n="info1_title">Timebestilling og henvendelser</h3>
+        <div class="info-entry__body" data-i18n-html="info1_body">
+          Timebestilling skjer primært via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue); font-weight:500;">Helsenorge ↗</a>. Vi anbefaler at dette benyttes der det er mulig. Alternativt kan du kontakte oss per telefon på 32 17 07 90.
+        </div>
+      </article>
+
+      <article class="info-entry">
+        <h3 class="info-entry__title" data-i18n="info2_title">Resepter</h3>
+        <div class="info-entry__body" data-i18n-html="info2_body">
+          Vi anbefaler at reseptforespørsler sendes via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue); font-weight:500;">Helsenorge ↗</a>. Dette bidrar til mer effektiv behandling og reduserer unødvendig telefonkø.
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── Ferie / Fravær ──────────────────────────────────────────────── -->
+<section class="section" id="fravær" data-feature="absence">
+  <div class="container">
+    <div class="section__label" data-i18n="sec_absence_label">Planlegg ditt besøk</div>
+    <h2 class="section__title" data-i18n="sec_absence_title">Ferie og fravær</h2>
+    <div class="divider" aria-hidden="true"></div>
+    <p class="section__lead" data-i18n="sec_absence_lead">Oversikt over planlagte ferier og fravær. Ring oss for siste informasjon.</p>
+
+    <div class="absence-cards">
+
+      <div class="absence-card">
+        <div class="absence-card__name">Jørn Ossum</div>
+        <div class="absence-card__weeks">
+          <span class="absence-week" data-week-num="24">Uke 24</span>
+          <span class="absence-week" data-week-num="29">Uke 29</span>
+          <span class="absence-week" data-week-num="30">Uke 30</span>
+          <span class="absence-week" data-week-num="32">Uke 32</span>
+        </div>
+      </div>
+
+      <div class="absence-card">
+        <div class="absence-card__name">Maya Nikolova Yurukova</div>
+        <div class="absence-card__weeks">
+          <span class="absence-week" data-week-num="32">Uke 32</span>
+          <span class="absence-week" data-week-num="33">Uke 33</span>
+          <span class="absence-week" data-week-num="34">Uke 34</span>
+        </div>
+      </div>
+
+      <div class="absence-card">
+        <div class="absence-card__name">Ljiljana Labus</div>
+        <div class="absence-card__weeks">
+          <span class="absence-week" data-week-num="31">Uke 31</span>
+          <span class="absence-week" data-week-num="32">Uke 32</span>
+          <span class="absence-week" data-week-num="33">Uke 33</span>
+        </div>
+      </div>
+
+      <div class="absence-card">
+        <div class="absence-card__name">Marthe Caroline Svensbråten</div>
+        <div class="absence-card__weeks">
+          <span class="absence-week" data-week-num="28">Uke 28</span>
+          <span class="absence-week" data-week-num="29">Uke 29</span>
+          <span class="absence-week" data-week-num="30">Uke 30</span>
+        </div>
+      </div>
+
+      <div class="absence-card">
+        <div class="absence-card__name">Svein Ole Innerdal Festøy</div>
+        <div class="absence-card__weeks">
+          <span class="absence-week" data-week-num="26">Uke 26</span>
+          <span class="absence-week" data-week-num="27">Uke 27</span>
+          <span class="absence-week" data-week-num="28">Uke 28</span>
+          <span class="absence-week" data-week-num="31">Uke 31</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="margin-top:20px; font-size:.84rem; color:var(--c-text-sub);">
+      <span data-i18n="absence_note">Tabellen oppdateres fortløpende. Ring oss på</span>
+      <a href="tel:+4732170790" style="color:var(--c-blue);">32 17 07 90</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ── Kontakt ─────────────────────────────────────────────────────── -->
+<section class="section section--alt" id="kontakt">
+  <div class="container">
+    <div class="section__label" data-i18n="sec_contact_label">Kom i kontakt</div>
+    <h2 class="section__title" data-i18n="sec_contact_title">Kontaktinformasjon</h2>
+    <div class="divider" aria-hidden="true"></div>
+    <p class="section__lead" data-i18n="sec_contact_lead">Vi er tilgjengelige per telefon i telefonlinjetiden. Klinikken har gode bussforbindelser, og det finnes parkeringsmuligheter i nærheten.</p>
+
+    <!-- Phone grid -->
+    <div class="phone-section">
+      <div class="phone-section__title" data-i18n="phone_section_title">Telefon</div>
+      <div class="phone-grid">
+
+        <div class="phone-card phone-card--reception">
+          <div class="phone-card__icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h1.372c.516 0 .967.354 1.094.852l1.062 4.248a1.125 1.125 0 01-.372 1.118l-1.09.909a9.001 9.001 0 004.553 4.553l.909-1.09a1.125 1.125 0 011.118-.372l4.248 1.062c.498.127.852.578.852 1.094V18.75A2.25 2.25 0 0118.75 21C10.125 21 3 13.875 3 5.25z"/></svg>
+          </div>
+          <div class="phone-card__label" data-i18n="phone_reception_label">Resepsjon</div>
+          <div class="phone-card__number"><a href="tel:+4732170790">32 17 07 90</a></div>
+          <div class="phone-card__sub" data-i18n-html="phone_reception_hours">Man–tors: 09:00–11:00 og 12:30–13:30<br>Fredag: 09:00–11:00 og 12:30–13:00</div>
+        </div>
+
+        <div class="phone-card phone-card--acute">
+          <div class="phone-card__icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+          </div>
+          <div class="phone-card__label" data-i18n="phone_acute_label">Akuttelefon – Flattum</div>
+          <div class="phone-card__number"><a href="tel:+4732170798">32 17 07 98</a></div>
+          <div class="phone-card__sub" data-i18n="phone_acute_sub">Flattum Legesenter akuttelefon</div>
+        </div>
+
+        <div class="phone-card phone-card--legevakt">
+          <div class="phone-card__icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+          </div>
+          <div class="phone-card__label" data-i18n="phone_legevakt_label">Legevakt</div>
+          <div class="phone-card__number"><a href="tel:116117">116 117</a></div>
+          <div class="phone-card__sub" data-i18n="phone_legevakt_sub">Utenom åpningstid · døgnåpent</div>
+        </div>
+
+        <div class="phone-card phone-card--sos">
+          <div class="phone-card__icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+          </div>
+          <div class="phone-card__label" data-i18n="phone_sos_label">Nødnummer</div>
+          <div class="phone-card__number"><a href="tel:113">113</a></div>
+          <div class="phone-card__sub" data-i18n="phone_sos_sub">Livstruende nødsituasjoner</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Address + map -->
+    <div class="contact__grid">
+      <div class="contact-info">
+
+        <div class="contact-row">
+          <div class="contact-row__icon" aria-hidden="true">
+            <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          </div>
+          <div>
+            <div class="contact-row__label" data-i18n="contact_email_label">E-post</div>
+            <div class="contact-row__value"><a href="mailto:flattum.legesenter@legepost.no">flattum.legesenter@legepost.no</a></div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-row__icon" aria-hidden="true">
+            <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          </div>
+          <div>
+            <div class="contact-row__label" data-i18n="contact_address_label">Besøksadresse</div>
+            <div class="contact-row__value">Hønengata 70, 3515 Hønefoss</div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-row__icon" aria-hidden="true">
+            <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <div class="contact-row__label" data-i18n="contact_hours_label">Åpningstider</div>
+            <div class="contact-row__value" style="font-weight:400; font-size:.88rem; line-height:1.8;" data-i18n-html="contact_hours_value">
+              Man–fre: 08:30–15:00<br>Lørdag–søndag og helligdager: Stengt
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-row__icon" aria-hidden="true">
+            <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+          </div>
+          <div>
+            <div class="contact-row__label" data-i18n="contact_helsenorge_label">Helsenorge</div>
+            <div class="contact-row__value"><a href="https://www.helsenorge.no/" target="_blank" rel="noopener">helsenorge.no ↗</a></div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-row__icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div>
+            <div class="contact-row__label" data-i18n="contact_fb_label">Facebook</div>
+            <div class="contact-row__value">
+              <a href="https://www.facebook.com/p/Flattum-Legesenter-100063484603202/" target="_blank" rel="noopener" data-i18n="contact_fb_value">
+                Flattum Legesenter på Facebook ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Google Maps -->
+      <div class="map-wrap">
+        <iframe
+          title="Kart – Flattum Legesenter DA, Hønengata 70, Hønefoss"
+          src="https://maps.google.com/maps?q=H%C3%B8nengata+70%2C+3515+H%C3%B8nefoss%2C+Norge&t=&z=16&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Personvernerklæring modal ──────────────────────────────────── -->
+<div class="privacy-overlay" id="privacyOverlay" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+  <div class="privacy-modal">
+    <div class="privacy-modal__head">
+      <h2 class="privacy-modal__title" id="privacyTitle" data-i18n="privacy_title">Personvernerklæring – Flattum Legesenter</h2>
+      <button class="privacy-modal__close" id="privacyClose" aria-label="Lukk" data-i18n-aria="privacy_close_aria">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="privacy-modal__body" id="privacyBody">
+      <!-- populated by applyTranslations() -->
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ─────────────────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">Flattum Legesenter DA</div>
+        <p class="footer__desc" data-i18n="footer_desc">
+          Et legesenter sentralt i Hønefoss med fem fastleger.
+          Vi tilbyr allmennlegetjenester og primærhelsetjeneste til fastlistens pasienter.
+        </p>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title" data-i18n="footer_nav_title">Navigasjon</div>
+        <ul>
+          <li><a href="#forside"      data-i18n="nav_home">Hjem</a></li>
+          <li><a href="#leger"        data-i18n="nav_doctors">Leger</a></li>
+          <li><a href="#apningstider" data-i18n="nav_hours">Åpningstider</a></li>
+          <li><a href="#informasjon"  data-i18n="nav_info">Informasjon</a></li>
+          <li data-feature="absence"><a href="#fravær"       data-i18n="nav_absence">Fravær</a></li>
+          <li><a href="#kontakt"      data-i18n="nav_contact">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title" data-i18n="footer_links_title">Nyttige lenker</div>
+        <ul>
+          <li><a href="https://www.helsenorge.no/" target="_blank" rel="noopener">Helsenorge.no ↗</a></li>
+          <li><a href="https://www.helsedirektoratet.no" target="_blank" rel="noopener">Helsedirektoratet ↗</a></li>
+          <li><a href="tel:116117" data-i18n="footer_emergency">Legevakt: 116 117</a></li>
+          <li><a href="tel:113"    data-i18n="footer_sos">Nødnummer: 113</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> Flattum Legesenter DA</span>
+      <button class="footer__privacy-btn" id="privacyBtn" type="button" data-i18n="privacy_btn">Personvernerklæring</button>
+      <a href="https://www.facebook.com/p/Flattum-Legesenter-100063484603202/" target="_blank" rel="noopener" class="footer__fb">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Tilbake til toppen">
+  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/></svg>
+</button>
+
+<!-- ── Script ──────────────────────────────────────────────────────── -->
+<script>
+/* ═══════════════════════════════════════════════════════════
+   LANGUAGE DATA
+   ═══════════════════════════════════════════════════════════ */
+const FLAGS = {
+  no: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAxNiI+PHJlY3Qgd2lkdGg9IjIyIiBoZWlnaHQ9IjE2IiBmaWxsPSIjZWYyYjJkIi8+PHJlY3QgeD0iNiIgd2lkdGg9IjQiIGhlaWdodD0iMTYiIGZpbGw9IiNmZmYiLz48cmVjdCB5PSI2IiB3aWR0aD0iMjIiIGhlaWdodD0iNCIgZmlsbD0iI2ZmZiIvPjxyZWN0IHg9IjciIHdpZHRoPSIyIiBoZWlnaHQ9IjE2IiBmaWxsPSIjMDAyODY4Ii8+PHJlY3QgeT0iNyIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIiIGZpbGw9IiMwMDI4NjgiLz48L3N2Zz4=',
+  gb: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAxNiI+PHJlY3Qgd2lkdGg9IjIyIiBoZWlnaHQ9IjE2IiBmaWxsPSIjMDEyMTY5Ii8+PHBhdGggZD0iTTAsMCBMMjIsMTYgTTIyLDAgTDAsMTYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIzLjIiLz48cGF0aCBkPSJNMCwwIEwyMiwxNiBNMjIsMCBMMCwxNiIgc3Ryb2tlPSIjQzgxMDJFIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTEsMCBWMTYgTTAsOCBIMjIiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHBhdGggZD0iTTExLDAgVjE2IE0wLDggSDIyIiBzdHJva2U9IiNDODEwMkUiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==',
+  sa: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAxNiI+CjxyZWN0IHdpZHRoPSIyMiIgaGVpZ2h0PSIxNiIgZmlsbD0iIzAwNmMzNSIvPgo8dGV4dCB4PSIxMSIgeT0iNy41IiBmb250LXNpemU9IjMuNSIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIj7ZhNinINil2YTZhyDYpdmE2Kcg2KfZhNmE2Yc8L3RleHQ+CjxsaW5lIHgxPSI0IiB5MT0iMTEiIHgyPSIxOCIgeTI9IjExIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMS4yIi8+Cjxwb2x5Z29uIHBvaW50cz0iMTcsOS41IDE5LDExIDE3LDEyLjUiIGZpbGw9IiNmZmYiLz4KPHJlY3QgeD0iNCIgeT0iMTAuNCIgd2lkdGg9IjEuNSIgaGVpZ2h0PSIxLjIiIGZpbGw9IiNmZmYiLz4KPC9zdmc+',
+  pl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAxNiI+PHJlY3Qgd2lkdGg9IjIyIiBoZWlnaHQ9IjgiIGZpbGw9IiNmZmYiLz48cmVjdCB5PSI4IiB3aWR0aD0iMjIiIGhlaWdodD0iOCIgZmlsbD0iI2RjMTQzYyIvPjwvc3ZnPg==',
+  ua: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAxNiI+PHJlY3Qgd2lkdGg9IjIyIiBoZWlnaHQ9IjgiIGZpbGw9IiMwMDViYmIiLz48cmVjdCB5PSI4IiB3aWR0aD0iMjIiIGhlaWdodD0iOCIgZmlsbD0iI2ZmZDUwMCIvPjwvc3ZnPg==',
+  so: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAxNiI+PHJlY3Qgd2lkdGg9IjIyIiBoZWlnaHQ9IjE2IiBmaWxsPSIjNDE4OWRkIi8+PHRleHQgeD0iMTEiIHk9IjExLjUiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzZXJpZiI+4piFPC90ZXh0Pjwvc3ZnPg==',
+  lt: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAxNiI+PHJlY3Qgd2lkdGg9IjIyIiBoZWlnaHQ9IjUuMzMiIGZpbGw9IiNmZGI5MTMiLz48cmVjdCB5PSI1LjMzIiB3aWR0aD0iMjIiIGhlaWdodD0iNS4zMyIgZmlsbD0iIzAwNmE0NCIvPjxyZWN0IHk9IjEwLjY3IiB3aWR0aD0iMjIiIGhlaWdodD0iNS4zMyIgZmlsbD0iI2MxMjcyZCIvPjwvc3ZnPg==',
+};
+const LANGS = {
+  nb: { name:'Bokmål',     native:'Bokmål',     flag:'no', dir:'ltr' },
+  en: { name:'English',    native:'English',    flag:'gb', dir:'ltr' },
+  ar: { name:'Arabic',     native:'العربية',    flag:'sa', dir:'rtl' },
+  pl: { name:'Polish',     native:'Polski',     flag:'pl', dir:'ltr' },
+  uk: { name:'Ukrainian',  native:'Українська', flag:'ua', dir:'ltr' },
+  so: { name:'Somali',     native:'Soomaali',   flag:'so', dir:'ltr' },
+  lt: { name:'Lithuanian', native:'Lietuvių',   flag:'lt', dir:'ltr' },
+};
+
+const T = {
+  nav_home:     {nb:'Hjem',en:'Home',ar:'الرئيسية',pl:'Strona główna',uk:'Головна',so:'Guriga',lt:'Pagrindinis'},
+  nav_doctors:  {nb:'Leger',en:'Doctors',ar:'الأطباء',pl:'Lekarze',uk:'Лікарі',so:'Dhakhtarada',lt:'Gydytojai'},
+  nav_hours:    {nb:'Åpningstider',en:'Opening Hours',ar:'ساعات العمل',pl:'Godziny otwarcia',uk:'Години роботи',so:'Saacadaha',lt:'Darbo laikas'},
+  nav_info:     {nb:'Informasjon',en:'Information',ar:'معلومات',pl:'Informacje',uk:'Інформація',so:'Macluumaad',lt:'Informacija'},
+  nav_absence:  {nb:'Fravær',en:'Absence',ar:'الغياب',pl:'Nieobecność',uk:'Відсутність',so:'Maqnaanshaha',lt:'Neatvykimas'},
+  nav_contact:  {nb:'Kontakt',en:'Contact',ar:'اتصل بنا',pl:'Kontakt',uk:'Контакт',so:'Xiriir',lt:'Kontaktai'},
+  lang_disclaimer: {nb:'* Informasjon oversatt til andre språk kan være upresis. Ring oss for oppdatert informasjon.',en:'* Information translated to other languages may be imprecise. Call us for up-to-date information.',ar:'* المعلومات المترجمة إلى لغات أخرى قد تكون غير دقيقة. اتصل بنا للحصول على معلومات محدّثة.',pl:'* Informacje przetłumaczone na inne języki mogą być nieprecyzyjne. Zadzwoń do nas po aktualne informacje.',uk:'* Інформація, перекладена іншими мовами, може бути неточною. Зателефонуйте нам для отримання актуальної інформації.',so:'* Macluumaadka la turjumay luqadaha kale wuxuu noqon karaa mid aan sax ahayn. Noogu soo wac macluumaadka cusub.',lt:'* Informacija, išversta į kitas kalbas, gali būti netiksli. Skambinkite mums dėl naujausios informacijos.'},
+  lang_label:   {nb:'Velg språk',en:'Select language',ar:'اختر اللغة',pl:'Wybierz język',uk:'Оберіть мову',so:'Dooro luqadda',lt:'Pasirinkite kalbą'},
+
+ 
+  hero_title2:   {nb:'Legesenter',en:'Medical Centre',ar:'المركز الطبي',pl:'Centrum Medyczne',uk:'Медичний центр',so:'Xarunta Caafimaadka',lt:'Medicinos centras'},
+  hero_desc:     {nb:'Et legesenter med fem fastleger sentralt i Hønefoss. Vi tilbyr trygg og tilgjengelig primærhelsetjeneste for hele familien.',en:'A medical centre with five GPs centrally located in Hønefoss. We offer safe and accessible primary healthcare for the whole family.',ar:'مركز طبي يضم خمسة أطباء عامين في قلب هونفوس. نقدم رعاية صحية أولية آمنة للعائلة.',pl:'Centrum medyczne z pięcioma lekarzami w centrum Hønefoss. Oferujemy bezpieczną i dostępną podstawową opiekę zdrowotną.',uk:'Медичний центр із п\'ятьма сімейними лікарями в центрі Хонефоса. Безпечна первинна медична допомога для всієї родини.',so:'Xarunta caafimaadka oo leh shan dhakhtar oo ku taal bartamaha Hønefoss.',lt:'Medicinos centras su penkiais šeimos gydytojais Hønefoss miesto centre.'},
+  hero_btn_contact:{nb:'Kontakt oss',en:'Contact us',ar:'اتصل بنا',pl:'Skontaktuj się',uk:'Зв\'яжіться',so:'Nala xiriir',lt:'Susisiekite'},
+  hero_btn_doctors:{nb:'Møt legene',en:'Meet the doctors',ar:'تعرف على الأطباء',pl:'Poznaj lekarzy',uk:'Познайомтесь з лікарями',so:'La kulm dhakhtarada',lt:'Susipažinkite su gydytojais'},
+
+  card_address_label:{nb:'Adresse',en:'Address',ar:'العنوان',pl:'Adres',uk:'Адреса',so:'Cinwaan',lt:'Adresas'},
+  card_phone_label:  {nb:'Telefon',en:'Phone',ar:'الهاتف',pl:'Telefon',uk:'Телефон',so:'Telefoon',lt:'Telefonas'},
+  card_phone_sub:    {nb:'Man–tors: 09:00–11:00 og 12:30–13:30<br>Fre: 09:00–11:00 og 12:30–13:00',en:'Mon–Thu: 09:00–11:00 and 12:30–13:30<br>Fri: 09:00–11:00 and 12:30–13:00',ar:'الاثنين–الخميس: 09:00–11:00 و12:30–13:30<br>الجمعة: 09:00–11:00 و12:30–13:00',pl:'Pon–czw: 09:00–11:00 i 12:30–13:30<br>Pt: 09:00–11:00 i 12:30–13:00',uk:'Пн–Чт: 09:00–11:00 та 12:30–13:30<br>Пт: 09:00–11:00 та 12:30–13:00',so:'Isn–Kha: 09:00–11:00 iyo 12:30–13:30<br>Jim: 09:00–11:00 iyo 12:30–13:00',lt:'Pirm–ketv: 09:00–11:00 ir 12:30–13:30<br>Penkt: 09:00–11:00 ir 12:30–13:00'},
+  card_hours_label:  {nb:'Åpent i dag',en:'Open today',ar:'مفتوح اليوم',pl:'Otwarte dziś',uk:'Відкрито сьогодні',so:'Furan maanta',lt:'Atidaryta šiandien'},
+  card_parking_label:{nb:'Parkering og transport',en:'Parking & transport',ar:'المواقف والمواصلات',pl:'Parking i transport',uk:'Парковка та транспорт',so:'Baabuurta iyo gaadiidka',lt:'Parkavimas ir transportas'},
+  card_parking_value:{nb:'Gode bussforbindelser',en:'Good bus connections',ar:'مواصلات جيدة بالحافلات',pl:'Dobre połączenia autobusowe',uk:'Зручне автобусне сполучення',so:'Bas wanaagsan',lt:'Geri autobusų maršrutai'},
+  card_parking_sub:  {nb:'Parkeringsmuligheter i nærheten',en:'Parking available nearby',ar:'مواقف سيارات قريبة',pl:'Parking w pobliżu',uk:'Парковка поблизу',so:'Baabuur dhigasho u dhow',lt:'Automobilių stovėjimas netoliese'},
+
+  sec_doctors_label:{nb:'Våre fastleger',en:'Our GPs',ar:'أطباؤنا',pl:'Nasi lekarze',uk:'Наші лікарі',so:'Dhakhtaradayada',lt:'Mūsų gydytojai'},
+  sec_doctors_title:{nb:'Leger ved senteret',en:'Doctors at the centre',ar:'أطباء المركز',pl:'Lekarze w centrum',uk:'Лікарі центру',so:'Dhakhtarada xarunta',lt:'Centro gydytojai'},
+  sec_doctors_lead: {nb:'Flattum Legesenter har fem fastleger med bred faglig kompetanse innen allmennmedisin.',en:'Flattum Medical Centre has five GPs with broad professional expertise in general medicine.',ar:'يضم مركز فلاتوم الطبي خمسة أطباء عامين ذوي خبرة واسعة.',pl:'Centrum Medyczne Flattum posiada pięciu lekarzy rodzinnych z szeroką wiedzą fachową.',uk:'Медичний центр Флаттум має п\'ять сімейних лікарів із широкою компетентністю.',so:'Xarunta Caafimaadka Flattum waxay leedahay shan dhakhtar oo leh aqoon xirfadeed balladan.',lt:'Flattum medicinos centre dirba penki šeimos gydytojai, turintys plačias žinias.'},
+  doctor_days_marthe: {nb:'Tir · Ons · Tor · Fre',en:'Tue · Wed · Thu · Fri',ar:'ثلا · أرب · خمي · جمع',pl:'Wt · Śr · Czw · Pt',uk:'Вт · Ср · Чт · Пт',so:'Tal · Arb · Kha · Jim',lt:'A · T · K · Pn'},
+  doctor_days_svein: {nb:'Man · Ons · Tor · Fre',en:'Mon · Wed · Thu · Fri',ar:'اثن · أرب · خمي · جمع',pl:'Pn · Śr · Czw · Pt',uk:'Пн · Ср · Чт · Пт',so:'Isn · Arb · Kha · Jim',lt:'P · T · K · Pn'},
+  doctor_days_ljiljana: {nb:'Man · Tir · Tor · Fre',en:'Mon · Tue · Thu · Fri',ar:'اثن · ثلا · خمي · جمع',pl:'Pn · Wt · Czw · Pt',uk:'Пн · Вт · Чт · Пт',so:'Isn · Tal · Kha · Jim',lt:'P · A · K · Pn'},
+  doctor_days_maya: {nb:'Man · Tir · Ons · Fre',en:'Mon · Tue · Wed · Fri',ar:'اثن · ثلا · أرب · جمع',pl:'Pn · Wt · Śr · Pt',uk:'Пн · Вт · Ср · Пт',so:'Isn · Tal · Arb · Jim',lt:'P · A · T · Pn'},
+  doctor_days_jorn: {nb:'Man · Tir · Ons · Tor',en:'Mon · Tue · Wed · Thu',ar:'اثن · ثلا · أرب · خمي',pl:'Pn · Wt · Śr · Czw',uk:'Пн · Вт · Ср · Чт',so:'Isn · Tal · Arb · Kha',lt:'P · A · T · K'},
+  doctor_specialist:{nb:'Allmennlegespesialist',en:'GP Specialist',ar:'أخصائي طب عام',pl:'Specjalista medycyny ogólnej',uk:'Спеціаліст загальної медицини',so:'Khabiir caafimaad guud',lt:'Bendrosios praktikos specialistas'},
+  doctor_gp:        {nb:'Fastlege',en:'GP',ar:'طبيب عام',pl:'Lekarz rodzinny',uk:'Сімейний лікар',so:'Dhakhtar rasmiga ah',lt:'Šeimos gydytojas'},
+
+  sec_hours_label:{nb:'Besøk oss',en:'Visit us',ar:'زورونا',pl:'Odwiedź nas',uk:'Відвідайте нас',so:'Noo soo booqo',lt:'Aplankykite mus'},
+  sec_hours_title:{nb:'Åpningstider',en:'Opening Hours',ar:'ساعات العمل',pl:'Godziny otwarcia',uk:'Години роботи',so:'Saacadaha furnaanshaha',lt:'Darbo laikas'},
+  sec_hours_lead: {nb:'Telefon og resepsjon er åpen i kontortiden. Ved akutte behov utenom åpningstid, kontakt legevakten.',en:'Phone and reception are open during office hours. For urgent needs outside opening hours, contact the emergency service.',ar:'الهاتف والاستقبال مفتوحان خلال ساعات العمل. للطوارئ خارج ساعات العمل، اتصل بخدمة الإسعاف.',pl:'Telefon i recepcja są otwarte w godzinach biurowych. W nagłych przypadkach skontaktuj się z pogotowiem.',uk:'Телефон і ресепшн відкриті в робочий час. При екстрених потребах зверніться до швидкої допомоги.',so:'Telefoonka iyo qaabilaadda waa furan tahay saacadaha xafiiska.',lt:'Telefonas ir registratūra veikia darbo valandomis.'},
+  hours_office_title:{nb:'Kontoret er åpent',en:'Office is open',ar:'مواعيد المكتب',pl:'Biuro jest otwarte',uk:'Офіс відкритий',so:'Xafiiska waa furan yahay',lt:'Biuras atidarytas'},
+  hours_office_week: {nb:'Denne uken',en:'Next 7 days',ar:'الأيام السبعة القادمة',pl:'Następne 7 dni',uk:'Наступні 7 днів',so:'7ta maalmood ee xigta',lt:'Kitos 7 dienos'},
+  hours_today_marker:{nb:'I dag',en:'Today',ar:'اليوم',pl:'Dziś',uk:'Сьогодні',so:'Maanta',lt:'Šiandien'},
+
+  holiday_names: {
+    '01.01': {nb:'Nyttårsdag',en:'New Year\'s Day',ar:'رأس السنة',pl:'Nowy Rok',uk:'Новий рік',so:'Sanadka Cusub',lt:'Naujieji metai'},
+    '01.05': {nb:'Arbeidernes dag',en:'Labour Day',ar:'عيد العمال',pl:'Święto Pracy',uk:'День праці',so:'Maalinta Shaqaalaha',lt:'Darbo diena'},
+    '17.05': {nb:'Grunnlovsdag',en:'Constitution Day',ar:'يوم الدستور',pl:'Dzień Konstytucji',uk:'День Конституції',so:'Maalinta Dastuurka',lt:'Konstitucijos diena'},
+    '25.12': {nb:'1. juledag',en:'Christmas Day',ar:'عيد الميلاد',pl:'Boże Narodzenie',uk:'Різдво',so:'Ciida Milaadigga',lt:'Kalėdos'},
+    '26.12': {nb:'2. juledag',en:'Boxing Day',ar:'اليوم الثاني من الميلاد',pl:'Drugi dzień Bożego Narodzenia',uk:'Другий день Різдва',so:'Maalinta 2aad ee Ciida',lt:'Antroji Kalėdų diena'},
+    '18.04.2025': {nb:'Langfredag',en:'Good Friday',ar:'الجمعة العظيمة',pl:'Wielki Piątek',uk:'Страсна п\'ятниця',so:'Jimcaha Weyn',lt:'Didysis penktadienis'},
+    '21.04.2025': {nb:'1. påskedag',en:'Easter Sunday',ar:'أحد الفصح',pl:'Wielkanoc',uk:'Великдень',so:'Ciida Qiyaamaha',lt:'Velykos'},
+    '22.04.2025': {nb:'2. påskedag',en:'Easter Monday',ar:'اثنين الفصح',pl:'Poniedziałek Wielkanocny',uk:'Великодній понеділок',so:'Ciida Qiyaamaha (2)',lt:'Velykų pirmadienis'},
+    '29.05.2025': {nb:'Kristi himmelfartsdag',en:'Ascension Day',ar:'عيد الصعود',pl:'Wniebowstąpienie',uk:'Вознесіння',so:'Maalinta Kicinta',lt:'Žengimas į dangų'},
+    '08.06.2025': {nb:'1. pinsedag',en:'Whit Sunday',ar:'عيد العنصرة',pl:'Zielone Świątki',uk:'Трійця',so:'Ciida Pentecosti',lt:'Sekminės'},
+    '09.06.2025': {nb:'2. pinsedag',en:'Whit Monday',ar:'اثنين العنصرة',pl:'Poniedziałek Zielonych Świątek',uk:'День Святого Духа',so:'Ciida Pentecosti (2)',lt:'Sekminių pirmadienis'},
+    '03.04.2026': {nb:'Langfredag',en:'Good Friday',ar:'الجمعة العظيمة',pl:'Wielki Piątek',uk:'Страсна п\'ятниця',so:'Jimcaha Weyn',lt:'Didysis penktadienis'},
+    '05.04.2026': {nb:'1. påskedag',en:'Easter Sunday',ar:'أحد الفصح',pl:'Wielkanoc',uk:'Великдень',so:'Ciida Qiyaamaha',lt:'Velykos'},
+    '06.04.2026': {nb:'2. påskedag',en:'Easter Monday',ar:'اثنين الفصح',pl:'Poniedziałek Wielkanocny',uk:'Великодній понеділок',so:'Ciida Qiyaamaha (2)',lt:'Velykų pirmadienis'},
+    '14.05.2026': {nb:'Kristi himmelfartsdag',en:'Ascension Day',ar:'عيد الصعود',pl:'Wniebowstąpienie',uk:'Вознесіння',so:'Maalinta Kicinta',lt:'Žengimas į dangų'},
+    '24.05.2026': {nb:'1. pinsedag',en:'Whit Sunday',ar:'عيد العنصرة',pl:'Zielone Świątki',uk:'Трійця',so:'Ciida Pentecosti',lt:'Sekminės'},
+    '25.05.2026': {nb:'2. pinsedag',en:'Whit Monday',ar:'اثنين العنصرة',pl:'Poniedziałek Zielonych Świątek',uk:'День Святого Духа',so:'Ciida Pentecosti (2)',lt:'Sekminių pirmadienis'},
+  },
+  hours_phone_title: {nb:'Telefonlinje åpen',en:'Phone line open',ar:'الخط الهاتفي مفتوح',pl:'Linia telefoniczna czynna',uk:'Телефонна лінія відкрита',so:'Khadka telefoonka waa furan yahay',lt:'Telefonų linija atidaryta'},
+  hours_mon: {nb:'Mandag',en:'Monday',ar:'الاثنين',pl:'Poniedziałek',uk:'Понеділок',so:'Isniin',lt:'Pirmadienis'},
+  hours_tue: {nb:'Tirsdag',en:'Tuesday',ar:'الثلاثاء',pl:'Wtorek',uk:'Вівторок',so:'Talaado',lt:'Antradienis'},
+  hours_wed: {nb:'Onsdag',en:'Wednesday',ar:'الأربعاء',pl:'Środa',uk:'Середа',so:'Arbaco',lt:'Trečiadienis'},
+  hours_thu: {nb:'Torsdag',en:'Thursday',ar:'الخميس',pl:'Czwartek',uk:'Четвер',so:'Khamiis',lt:'Ketvirtadienis'},
+  hours_fri: {nb:'Fredag',en:'Friday',ar:'الجمعة',pl:'Piątek',uk:'П\'ятниця',so:'Jimce',lt:'Penktadienis'},
+  hours_sat: {nb:'Lørdag',en:'Saturday',ar:'السبت',pl:'Sobota',uk:'Субота',so:'Sabti',lt:'Šeštadienis'},
+  hours_sun: {nb:'Søndag',en:'Sunday',ar:'الأحد',pl:'Niedziela',uk:'Неділя',so:'Axad',lt:'Sekmadienis'},
+  hours_closed:{nb:'Stengt',en:'Closed',ar:'مغلق',pl:'Zamknięte',uk:'Зачинено',so:'Xidhan',lt:'Uždaryta'},
+  hours_monthu:{nb:'Man–tors',en:'Mon–Thu',ar:'الاثنين–الخميس',pl:'Pon–czw',uk:'Пн–Чт',so:'Isn–Kha',lt:'Pirm–ketv'},
+  hours_monthu_time:{nb:'09:00–11:00 og 12:30–13:30',en:'09:00–11:00 and 12:30–13:30',ar:'09:00–11:00 و12:30–13:30',pl:'09:00–11:00 i 12:30–13:30',uk:'09:00–11:00 та 12:30–13:30',so:'09:00–11:00 iyo 12:30–13:30',lt:'09:00–11:00 ir 12:30–13:30'},
+  hours_fri_phone_time:{nb:'09:00–11:00 og 12:30–13:00',en:'09:00–11:00 and 12:30–13:00',ar:'09:00–11:00 و12:30–13:00',pl:'09:00–11:00 i 12:30–13:00',uk:'09:00–11:00 та 12:30–13:00',so:'09:00–11:00 iyo 12:30–13:00',lt:'09:00–11:00 ir 12:30–13:00'},
+  hours_emergency:{nb:'<strong>Legevakt utenom åpningstid:</strong><br>Ring <strong>116 117</strong> for legevakt (døgnåpent). Ved livstruende nødsituasjoner, ring <strong>113</strong>.',en:'<strong>Out-of-hours emergencies:</strong><br>Call <strong>116 117</strong> for the emergency service (24/7). Life-threatening emergencies: call <strong>113</strong>.',ar:'<strong>الطوارئ خارج ساعات العمل:</strong><br>اتصل بـ <strong>116 117</strong> (24/7). حالات الطوارئ المهددة للحياة: <strong>113</strong>.',pl:'<strong>Nagłe przypadki poza godzinami:</strong><br>Zadzwoń <strong>116 117</strong> (całą dobę). Zagrożenie życia: <strong>113</strong>.',uk:'<strong>Екстрені випадки поза робочим часом:</strong><br>Телефонуйте <strong>116 117</strong> (цілодобово). Загроза для життя: <strong>113</strong>.',so:'<strong>Gurmad ka baxsan saacadaha:</strong><br>Wac <strong>116 117</strong> (24/7). Khatar nolosha: <strong>113</strong>.',lt:'<strong>Skubi pagalba ne darbo metu:</strong><br>Skambinkite <strong>116 117</strong> (24/7). Pavojus gyvybei: <strong>113</strong>.'},
+  hours_booking_label:{nb:'Timebestilling',en:'Appointments',ar:'حجز موعد',pl:'Rejestracja',uk:'Запис на прийом',so:'Ballan qaadashada',lt:'Registracija'},
+  hours_booking_text:{nb:'Timebestilling skjer primært via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Vi anbefaler at dette benyttes der det er mulig. Alternativt kan du kontakte oss per telefon.',en:'Appointments are primarily made via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. We recommend using this where possible. Alternatively, you can contact us by phone.',ar:'يتم حجز المواعيد بشكل أساسي عبر <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. نوصي باستخدام هذه الخدمة حيثما أمكن. بدلاً من ذلك، يمكنك الاتصال بنا هاتفياً.',pl:'Rejestracja odbywa się głównie przez <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Zalecamy korzystanie z tej opcji. Alternatywnie można skontaktować się telefonicznie.',uk:'Запис на прийом здійснюється переважно через <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Рекомендуємо користуватися цією послугою. Також можна зателефонувати.',so:'Ballanka waxaa ugu horreyn lagu qaadanaa <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Waxaan kugula talineynaa inaad isticmaasho meesha suurtagal ah. Sidoo kale waxaad nagu soo wici kartaa telefoonka.',lt:'Registracija vyksta pirmiausia per <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Rekomenduojame naudotis šia paslauga. Taip pat galite susisiekti telefonu.'},
+
+  sec_info_label:{nb:'Til våre pasienter',en:'For our patients',ar:'لمرضانا',pl:'Dla naszych pacjentów',uk:'Нашим пацієнтам',so:'Bukaannadayada',lt:'Mūsų pacientams'},
+  sec_info_title:{nb:'Informasjon',en:'Information',ar:'معلومات',pl:'Informacje',uk:'Інформація',so:'Macluumaad',lt:'Informacija'},
+  sec_info_lead: {nb:'Her publiserer vi oppdateringer, beskjeder og generell informasjon til pasienter og pårørende.',en:'Here we publish updates, messages and general information for patients and relatives.',ar:'هنا ننشر التحديثات والمعلومات العامة للمرضى وذويهم.',pl:'Tutaj publikujemy aktualizacje i informacje dla pacjentów.',uk:'Тут ми публікуємо оновлення та інформацію для пацієнтів і їх родин.',so:'Halkan waxaan daabacnaa cusbooneysiinta iyo macluumaadka guud.',lt:'Čia skelbiame atnaujinimus ir bendrą informaciją pacientams.'},
+  info1_date:  {nb:'Oppdatert april 2025',en:'Updated April 2025',ar:'تحديث أبريل 2025',pl:'Aktualizacja kwiecień 2025',uk:'Оновлено квітень 2025',so:'La cusbooneysiiyay Abriil 2025',lt:'Atnaujinta 2025 m. balandis'},
+  info1_title: {nb:'Timebestilling og henvendelser',en:'Appointments and enquiries',ar:'حجز المواعيد والاستفسارات',pl:'Rejestracja i zapytania',uk:'Запис та запити',so:'Ballan qaadashada iyo su\'aalaha',lt:'Registracija ir užklausos'},
+  info1_body:  {nb:'Timebestilling skjer primært via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Vi anbefaler at dette benyttes der det er mulig. Alternativt kan du kontakte oss per telefon på 32 17 07 90.',en:'Appointments are primarily made via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. We recommend using this where possible. Alternatively, contact us by phone at 32 17 07 90.',ar:'يتم حجز المواعيد بشكل أساسي عبر <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. نوصي باستخدام هذه الخدمة. بدلاً من ذلك اتصل بنا على 32 17 07 90.',pl:'Rejestracja odbywa się głównie przez <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Alternatywnie tel.: 32 17 07 90.',uk:'Запис переважно через <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Також можна зателефонувати: 32 17 07 90.',so:'Ballanka waxaa ugu horreyn lagu qaadanaa <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Sidoo kale telefoonka: 32 17 07 90.',lt:'Registracija pirmiausia per <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Taip pat telefonu: 32 17 07 90.'},
+  info2_date:  {nb:'Generell informasjon',en:'General information',ar:'معلومات عامة',pl:'Informacje ogólne',uk:'Загальна інформація',so:'Macluumaadka guud',lt:'Bendroji informacija'},
+  info2_title: {nb:'Resepter',en:'Prescriptions',ar:'الوصفات الطبية',pl:'Recepty',uk:'Рецепти',so:'Dawooyinka',lt:'Receptai'},
+  info2_body:  {nb:'Vi anbefaler at reseptforespørsler sendes via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Dette bidrar til mer effektiv behandling og reduserer unødvendig telefonkø.',en:'We recommend that prescription requests are sent via <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. This contributes to more efficient processing and reduces unnecessary phone queues.',ar:'نوصي بإرسال طلبات الوصفات عبر <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. هذا يساهم في معالجة أكثر كفاءة ويقلل من طوابير الهاتف.',pl:'Zalecamy wysyłanie próśb o recepty przez <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Pomaga to w sprawniejszej obsłudze i ogranicza kolejki telefoniczne.',uk:'Рекомендуємо надсилати запити на рецепти через <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Це сприяє ефективнішому обслуговуванню та скорочує черги.',so:'Waxaan kugula talineynaa inaad codsiyada dawooyinka ku dirto <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Tani waxay ka gaystaa adeeg waxtar badan waxayna yareyneysaa dheereynta telefoonka.',lt:'Rekomenduojame receptų užklausas siųsti per <a href="https://www.helsenorge.no/" target="_blank" rel="noopener" style="color:var(--c-blue);font-weight:500;">Helsenorge ↗</a>. Tai padeda efektyviau aptarnauti ir sumažina telefono eilutes.'},
+
+  info_econsult_date: {nb:'Viktig melding',en:'Important notice',ar:'إشعار هام',pl:'Ważna informacja',uk:'Важливе повідомлення',so:'Ogeysiis muhiim ah',lt:'Svarbus pranešimas'},
+  info_econsult_title:{nb:'E-konsultasjon midlertidig stengt',en:'E-consultation temporarily closed',ar:'الاستشارة الإلكترونية مغلقة مؤقتاً',pl:'E-konsultacja tymczasowo zamknięta',uk:'Електронна консультація тимчасово закрита',so:'La-tashiga elektarooniga ah si ku meel gaar ah ayaa loo xidhay',lt:'E. konsultacija laikinai uždaryta'},
+  info_econsult_body: {nb:'E-konsultasjon er midlertidig stengt for alle våre leger, bortsett fra hos Dr. Jørn Ossum (på grunn av hans reduserte arbeidstid på kontoret). Dette er grunnet regjeringens nye bestemmelser.',en:'E-consultation is temporarily closed for all our doctors, except with Dr. Jørn Ossum (due to his reduced hours at the office). This is due to the government\'s new regulations.',ar:'الاستشارة الإلكترونية مغلقة مؤقتاً لدى جميع أطبائنا، باستثناء د. يورن أوسوم (بسبب ساعات عمله المخفضة في العيادة). وذلك بسبب اللوائح الحكومية الجديدة.',pl:'E-konsultacja jest tymczasowo zamknięta u wszystkich naszych lekarzy, z wyjątkiem dr. Jørna Ossuma (ze względu na skrócony czas pracy w gabinecie). Powodem są nowe przepisy rządowe.',uk:'Електронна консультація тимчасово закрита у всіх наших лікарів, окрім д-ра Йорна Оссума (через його скорочений робочий час у клініці). Це пов\'язано з новими урядовими постановами.',so:'La-tashiga elektarooniga ah si ku meel gaar ah ayaa uga xiran dhammaan dhakhaatiirteena, marka laga reebo Dr. Jørn Ossum (sababo la xiriira saacadaha shaqadiisa oo la dhimay). Tani waxay ka dhalatay xeerarka cusub ee dowladda.',lt:'E. konsultacija laikinai uždaryta pas visus mūsų gydytojus, išskyrus Dr. Jørn Ossum (dėl jo sutrumpinto darbo laiko kabinete). Taip yra dėl naujų vyriausybės nuostatų.'},
+  sec_absence_label:{nb:'Planlegg ditt besøk',en:'Plan your visit',ar:'خطط لزيارتك',pl:'Zaplanuj wizytę',uk:'Плануйте візит',so:'Qorshee booqashadaada',lt:'Planuokite vizitą'},
+  sec_absence_title:{nb:'Ferie og fravær',en:'Holidays and absence',ar:'الإجازات والغياب',pl:'Urlopy i nieobecności',uk:'Відпустки та відсутність',so:'Fasaxyada iyo maqnaanshaha',lt:'Atostogos ir neatvykimai'},
+  sec_absence_lead: {nb:'Oversikt over planlagte ferier og fravær. Ring oss for siste informasjon.',en:'Overview of planned holidays and absence. Call us for the latest information.',ar:'نظرة عامة على الإجازات المخططة. اتصل بنا للحصول على أحدث المعلومات.',pl:'Przegląd planowanych urlopów. Zadzwoń po najnowsze informacje.',uk:'Огляд запланованих відпусток. Телефонуйте для актуальної інформації.',so:'Dulmarinta fasaxyada la qorsheeyay.',lt:'Planuojamų atostogų apžvalga.'},
+  week_prefix: {nb:'Uke',en:'Week',ar:'الأسبوع',pl:'Tydzień',uk:'Тиждень',so:'Toddobaad',lt:'Savaitė'},
+  absence_note:     {nb:'Tabellen oppdateres fortløpende. Ring oss på',en:'This overview is updated continuously. Call us on',ar:'يتم التحديث باستمرار. اتصل بنا على',pl:'Aktualizowane na bieżąco. Zadzwoń:',uk:'Оновлюється постійно. Телефонуйте:',so:'Si joogto ah loo cusbooneysiiyaa. Nagu soo wac:',lt:'Nuolat atnaujinama. Skambinkite:'},
+
+  sec_contact_label:{nb:'Kom i kontakt',en:'Get in touch',ar:'تواصل معنا',pl:'Skontaktuj się',uk:'Зв\'яжіться',so:'Nala xiriir',lt:'Susisiekite'},
+  sec_contact_title:{nb:'Kontaktinformasjon',en:'Contact information',ar:'معلومات الاتصال',pl:'Informacje kontaktowe',uk:'Контактна інформація',so:'Macluumaadka xiriirka',lt:'Kontaktinė informacija'},
+  sec_contact_lead: {nb:'Vi er tilgjengelige per telefon i telefonlinjetiden. Klinikken har gode bussforbindelser, og det finnes parkeringsmuligheter i nærheten.',en:'We are available by phone during phone line hours. The clinic has good bus connections, and parking is available nearby.',ar:'نحن متاحون عبر الهاتف. تتوفر مواصلات جيدة بالحافلات ومواقف سيارات قريبة.',pl:'Dostępni telefonicznie. Klinika ma dobre połączenia autobusowe i parking w pobliżu.',uk:'Доступні по телефону. Зручне автобусне сполучення та парковка поблизу.',so:'Waxaan ku heli karnaa telefoonka. Xarunta waxay leedahay bas wanaagsan iyo baabuur dhigasho.',lt:'Pasiekiami telefonu. Klinika turi gerą autobusų susisiekimą ir automobilių stovėjimo aikšteles netoliese.'},
+
+  phone_section_title:{nb:'Telefonnumre',en:'Phone numbers',ar:'أرقام الهاتف',pl:'Numery telefonów',uk:'Телефони',so:'Lambaryada telefoonka',lt:'Telefono numeriai'},
+  phone_reception_label:{nb:'Resepsjon',en:'Reception',ar:'الاستقبال',pl:'Recepcja',uk:'Ресепшн',so:'Qaabilaadda',lt:'Registratūra'},
+  phone_reception_hours:{nb:'Man–tors: 09:00–11:00 og 12:30–13:30<br>Fredag: 09:00–11:00 og 12:30–13:00',en:'Mon–Thu: 09:00–11:00 and 12:30–13:30<br>Friday: 09:00–11:00 and 12:30–13:00',ar:'الاثنين–الخميس: 09:00–11:00 و12:30–13:30<br>الجمعة: 09:00–11:00 و12:30–13:00',pl:'Pon–czw: 09:00–11:00 i 12:30–13:30<br>Piątek: 09:00–11:00 i 12:30–13:00',uk:'Пн–Чт: 09:00–11:00 та 12:30–13:30<br>П\'ятниця: 09:00–11:00 та 12:30–13:00',so:'Isn–Kha: 09:00–11:00 iyo 12:30–13:30<br>Jimce: 09:00–11:00 iyo 12:30–13:00',lt:'Pirm–ketv: 09:00–11:00 ir 12:30–13:30<br>Penktadienis: 09:00–11:00 ir 12:30–13:00'},
+  phone_acute_label:{nb:'Akuttelefon – Flattum',en:'Emergency line – Flattum',ar:'خط الطوارئ – فلاتوم',pl:'Telefon alarmowy – Flattum',uk:'Екстрена лінія – Флаттум',so:'Khadka degdega – Flattum',lt:'Skubios pagalbos linija – Flattum'},
+  phone_acute_sub:  {nb:'Flattum Legesenter akuttelefon',en:'Flattum Medical Centre emergency',ar:'هاتف طوارئ مركز فلاتوم',pl:'Telefon alarmowy centrum Flattum',uk:'Екстрений телефон центру Флаттум',so:'Telefoonka xaaladaha degdega ee Flattum',lt:'Flattum medicinos centro skubiosios pagalbos telefonas'},
+  phone_legevakt_label:{nb:'Legevakt',en:'Emergency medical service',ar:'خدمة الطوارئ الطبية',pl:'Pogotowie',uk:'Швидка допомога',so:'Adeegga xaaladaha degdega',lt:'Greitoji medicinos pagalba'},
+  phone_legevakt_sub:  {nb:'Utenom åpningstid · døgnåpent',en:'Outside opening hours · 24/7',ar:'خارج ساعات العمل · على مدار الساعة',pl:'Poza godzinami · całą dobę',uk:'Поза робочим часом · цілодобово',so:'Ka baxsan saacadaha · 24/7',lt:'Ne darbo metu · 24/7'},
+  phone_sos_label:  {nb:'Nødnummer',en:'Emergency number',ar:'رقم الطوارئ',pl:'Numer alarmowy',uk:'Номер екстреної служби',so:'Lambarka gurmadka',lt:'Pagalbos numeris'},
+  phone_sos_sub:    {nb:'Livstruende nødsituasjoner',en:'Life-threatening emergencies',ar:'حالات الطوارئ المهددة للحياة',pl:'Nagłe przypadki zagrożenia życia',uk:'Загрозливі для життя ситуації',so:'Xaaladaha khatar leh ee nolosha',lt:'Gyvybei pavojingi atvejai'},
+
+  contact_email_label:   {nb:'E-post',en:'Email',ar:'البريد الإلكتروني',pl:'E-mail',uk:'Електронна пошта',so:'Iimeyl',lt:'El. paštas'},
+  contact_address_label: {nb:'Besøksadresse',en:'Address',ar:'عنوان الزيارة',pl:'Adres',uk:'Адреса',so:'Cinwaan',lt:'Adresas'},
+  contact_hours_label:   {nb:'Åpningstider',en:'Opening hours',ar:'ساعات العمل',pl:'Godziny otwarcia',uk:'Години роботи',so:'Saacadaha furnaanshaha',lt:'Darbo laikas'},
+  contact_hours_value:   {nb:'Man–fre: 08:30–15:00<br>Lørdag–søndag og helligdager: Stengt',en:'Mon–Fri: 08:30–15:00<br>Sat–Sun and public holidays: Closed',ar:'الاثنين–الجمعة: 08:30–15:00<br>السبت–الأحد والعطل الرسمية: مغلق',pl:'Pon–pt: 08:30–15:00<br>Sob–niedz i święta: Zamknięte',uk:'Пн–Пт: 08:30–15:00<br>Сб–Нд та святкові дні: Зачинено',so:'Isn–Jim: 08:30–15:00<br>Sab–Axad iyo maalmaha xidka: Xidhan',lt:'Pirm–penkt: 08:30–15:00<br>Šeštad–sekm ir šventinės dienos: Uždaryta'},
+  contact_helsenorge_label:{nb:'Helsenorge',en:'Helsenorge',ar:'Helsenorge',pl:'Helsenorge',uk:'Helsenorge',so:'Helsenorge',lt:'Helsenorge'},
+  contact_fb_label:{nb:'Facebook',en:'Facebook',ar:'فيسبوك',pl:'Facebook',uk:'Facebook',so:'Facebook',lt:'Facebook'},
+  contact_fb_value:{nb:'Flattum Legesenter på Facebook ↗',en:'Flattum Medical Centre on Facebook ↗',ar:'Flattum Legesenter على Facebook ↗',pl:'Flattum Legesenter na Facebooku ↗',uk:'Flattum Legesenter у Facebook ↗',so:'Flattum Legesenter Facebook ↗',lt:'Flattum Legesenter „Facebook" ↗'},
+
+  footer_desc:      {nb:'Et legesenter sentralt i Hønefoss med fem fastleger.',en:'A medical centre in central Hønefoss with five GPs.',ar:'مركز طبي في قلب هونفوس مع خمسة أطباء عامين.',pl:'Centrum medyczne w centrum Hønefoss z pięcioma lekarzami.',uk:'Медичний центр у центрі Хонефоса з п\'ятьма сімейними лікарями.',so:'Xarunta caafimaadka ee ku taal bartamaha Hønefoss.',lt:'Medicinos centras Hønefoss miesto centre.'},
+  footer_nav_title: {nb:'Navigasjon',en:'Navigation',ar:'التنقل',pl:'Nawigacja',uk:'Навігація',so:'Raadinta',lt:'Navigacija'},
+  footer_links_title:{nb:'Nyttige lenker',en:'Useful links',ar:'روابط مفيدة',pl:'Przydatne linki',uk:'Корисні посилання',so:'Xiriiriyeyaasha faa\'iidada leh',lt:'Naudingi nuorodos'},
+  footer_emergency: {nb:'Legevakt: 116 117',en:'Emergency: 116 117',ar:'الطوارئ: 116 117',pl:'Pogotowie: 116 117',uk:'Швидка: 116 117',so:'Gurmad: 116 117',lt:'Greitoji: 116 117'},
+  footer_sos:       {nb:'Nødnummer: 113',en:'Emergency no.: 113',ar:'رقم الطوارئ: 113',pl:'Numer alarmowy: 113',uk:'Екстрена: 113',so:'Gurmad: 113',lt:'Pagalba: 113'},
+
+  today_open:   {nb:'08:30 – 15:00',en:'08:30 – 15:00',ar:'08:30 – 15:00',pl:'08:30 – 15:00',uk:'08:30 – 15:00',so:'08:30 – 15:00',lt:'08:30 – 15:00'},
+  today_closed: {nb:'Stengt i dag',en:'Closed today',ar:'مغلق اليوم',pl:'Zamknięte dziś',uk:'Зачинено сьогодні',so:'Xidhan maanta',lt:'Šiandien uždaryta'},
+
+  qi_open_badge:   {nb:'Åpent i dag',en:'Open today',ar:'مفتوح اليوم',pl:'Otwarte dziś',uk:'Відкрито сьогодні',so:'Furan maanta',lt:'Atidaryta šiandien'},
+  qi_open_short:   {nb:'Åpent',en:'Open',ar:'مفتوح',pl:'Otwarte',uk:'Відкрито',so:'Furan',lt:'Atidaryta'},
+  qi_closed_badge: {nb:'Stengt i dag',en:'Closed today',ar:'مغلق اليوم',pl:'Zamknięte dziś',uk:'Зачинено сьогодні',so:'Xidhan maanta',lt:'Šiandien uždaryta'},
+  qi_phone_label:  {nb:'Telefonlinje:',en:'Phone line:',ar:'خط الهاتف:',pl:'Linia tel.:',uk:'Телефонна лінія:',so:'Khadka tel:',lt:'Tel. linija:'},
+  qi_phone_hours_mth: {nb:'09:00–11:00 og 12:30–13:30',en:'09:00–11:00 and 12:30–13:30',ar:'09:00–11:00 و 12:30–13:30',pl:'09:00–11:00 i 12:30–13:30',uk:'09:00–11:00 та 12:30–13:30',so:'09:00–11:00 iyo 12:30–13:30',lt:'09:00–11:00 ir 12:30–13:30'},
+  qi_phone_hours_fri: {nb:'09:00–11:00 og 12:30–13:00',en:'09:00–11:00 and 12:30–13:00',ar:'09:00–11:00 و 12:30–13:00',pl:'09:00–11:00 i 12:30–13:00',uk:'09:00–11:00 та 12:30–13:00',so:'09:00–11:00 iyo 12:30–13:00',lt:'09:00–11:00 ir 12:30–13:00'},
+  qi_closed_phone: {nb:'–',en:'–',ar:'–',pl:'–',uk:'–',so:'–',lt:'–'},
+
+  privacy_btn:   {nb:'Personvernerklæring',en:'Privacy Policy',ar:'سياسة الخصوصية',pl:'Polityka prywatności',uk:'Політика конфіденційності',so:'Xeerka Arrimaha Gaarka',lt:'Privatumo politika'},
+  privacy_title: {nb:'Personvernerklæring – Flattum Legesenter',en:'Privacy Policy – Flattum Medical Centre',ar:'سياسة الخصوصية – مركز فلاتوم الطبي',pl:'Polityka prywatności – Centrum Medyczne Flattum',uk:'Політика конфіденційності – Медичний центр Флаттум',so:'Xeerka Arrimaha Gaarka – Flattum Legesenter',lt:'Privatumo politika – Flattum medicinos centras'},
+  privacy_body:  {
+    nb: '<p>Flattum Legesenter DA er behandlingsansvarlig for personopplysninger som behandles ved kontakt via telefon, e-post eller nettsiden. Behandlingen skjer i samsvar med GDPR og norsk personopplysningslov.</p><p>Vi samler ikke inn personopplysninger via nettskjema eller egne informasjonskapsler. Ved kontakt kan vi behandle navn, kontaktinformasjon og opplysninger du selv oppgir, inkludert helseopplysninger, for å besvare henvendelser og administrere pasientkontakt. Opplysningene lagres i e-post- og eventuelle journalsystemer og behandles konfidensielt.</p><p>Nettsiden bruker ikke egne informasjonskapsler, men tredjepartsinnhold som Google Maps kan sette informasjonskapsler i henhold til sine egne retningslinjer.</p><p>Du har rett til innsyn, retting og sletting av personopplysninger der dette er mulig.</p><h3>Kontakt</h3><p>Flattum Legesenter DA<br>Hønengata 70, 3515 Hønefoss<br>32 17 07 90<br><a href="mailto:flattum.legesenter@legepost.no">flattum.legesenter@legepost.no</a></p>',
+    en: '<p>Flattum Legesenter DA is the data controller for personal data processed when you contact us by phone, email, or through this website. Processing is carried out in accordance with the GDPR and Norwegian personal data legislation.</p><p>We do not collect personal data through web forms or our own cookies. When you contact us, we may process your name, contact details, and information you provide yourself, including health information, in order to respond to enquiries and manage patient contact. Data is stored in email and patient record systems and treated confidentially.</p><p>This website does not use its own cookies, but third-party content such as Google Maps may set cookies in accordance with their own policies.</p><p>You have the right to access, correct, and delete your personal data where applicable.</p><h3>Contact</h3><p>Flattum Legesenter DA<br>Hønengata 70, 3515 Hønefoss<br>32 17 07 90<br><a href="mailto:flattum.legesenter@legepost.no">flattum.legesenter@legepost.no</a></p>',
+    ar: '<p>Flattum Legesenter DA هي المسؤولة عن معالجة البيانات الشخصية عند التواصل معنا عبر الهاتف أو البريد الإلكتروني أو الموقع الإلكتروني. تتم المعالجة وفقًا للائحة GDPR والقانون النرويجي لحماية البيانات الشخصية.</p><p>لا نجمع بيانات شخصية عبر النماذج الإلكترونية أو ملفات تعريف الارتباط الخاصة بنا. عند التواصل، قد نعالج اسمك ومعلومات الاتصال والمعلومات التي تقدمها بنفسك، بما في ذلك المعلومات الصحية، للرد على الاستفسارات وإدارة التواصل مع المريض. تُخزَّن البيانات في أنظمة البريد الإلكتروني والسجلات الطبية وتُعامَل بسرية تامة.</p><p>لا يستخدم الموقع ملفات تعريف الارتباط الخاصة به، لكن محتوى الطرف الثالث مثل Google Maps قد يضع ملفات تعريف الارتباط وفقًا لسياساته الخاصة.</p><p>يحق لك الاطلاع على بياناتك الشخصية وتصحيحها وحذفها حيثما أمكن ذلك.</p><h3>التواصل</h3><p>Flattum Legesenter DA<br>Hønengata 70, 3515 Hønefoss<br>32 17 07 90<br><a href="mailto:flattum.legesenter@legepost.no">flattum.legesenter@legepost.no</a></p>',
+    pl: '<p>Flattum Legesenter DA jest administratorem danych osobowych przetwarzanych przy kontakcie telefonicznym, e-mailowym lub za pośrednictwem strony internetowej. Przetwarzanie odbywa się zgodnie z RODO i norweską ustawą o ochronie danych osobowych.</p><p>Nie zbieramy danych osobowych za pomocą formularzy internetowych ani własnych plików cookie. Przy kontakcie możemy przetwarzać imię, dane kontaktowe oraz informacje podane przez Ciebie, w tym dane dotyczące zdrowia, w celu odpowiedzi na zapytania i zarządzania kontaktem z pacjentem. Dane są przechowywane w systemach poczty e-mail i dokumentacji medycznej i traktowane poufnie.</p><p>Strona nie używa własnych plików cookie, ale treści zewnętrzne, takie jak Google Maps, mogą ustawiać pliki cookie zgodnie z własnymi zasadami.</p><p>Masz prawo do wglądu, poprawiania i usuwania swoich danych osobowych, jeśli jest to możliwe.</p><h3>Kontakt</h3><p>Flattum Legesenter DA<br>Hønengata 70, 3515 Hønefoss<br>32 17 07 90<br><a href="mailto:flattum.legesenter@legepost.no">flattum.legesenter@legepost.no</a></p>',
+    uk: '<p>Flattum Legesenter DA є відповідальним за обробку персональних даних при зверненні телефоном, електронною поштою або через веб-сайт. Обробка здійснюється відповідно до GDPR та норвезького законодавства про персональні дані.</p><p>Ми не збираємо персональні дані через веб-форми або власні файли cookie. При зверненні ми можемо обробляти ім\'я, контактну інформацію та дані, які ви надаєте самі, включно з медичними, для відповіді на запити та ведення контакту з пацієнтом. Дані зберігаються в системах електронної пошти та медичних записів і обробляються конфіденційно.</p><p>Сайт не використовує власних файлів cookie, але сторонній контент, такий як Google Maps, може встановлювати файли cookie відповідно до власних правил.</p><p>Ви маєте право на доступ, виправлення та видалення персональних даних там, де це можливо.</p><h3>Контакт</h3><p>Flattum Legesenter DA<br>Hønengata 70, 3515 Hønefoss<br>32 17 07 90<br><a href="mailto:flattum.legesenter@legepost.no">flattum.legesenter@legepost.no</a></p>',
+    so: '<p>Flattum Legesenter DA waa mas\'uulka ku saabsan xogta shakhsiga ee la socodsiiyo markaad nala xiriirsato telefoon, iimeyl, ama website. Waxaa la fuliyaa sida ay ku habboon tahay GDPR iyo sharciga Norway ee xogta shakhsiga.</p><p>Kuma ururinno xog shakhsi ah foomamka internet ama cookies-keena. Markaad nala xiriirsato, waxaan u qaadi karnaa magacaaga, macluumaadka xiriirka, iyo macluumaadka aad nagu siisay, oo ay ku jiraan xogta caafimaadka, si aan u jawaabno codsadayaasha oo u maamusho xiriirka bukaanka. Xogta waxaa lagu kaydiyaa nidaamyada iimeylka iyo diiwaangelinta caafimaadka waxaana loo dhaqaaqaa si sir ah.</p><p>Websiteka kuma isticmaalaan cookies-keena, laakiin waxyaabaha saddexaad sida Google Maps ayaa cookies dhigi kara sida siyaasadahooda u sheegaan.</p><p>Waxaad xaq u leedahay innaad aragto, saxdo, oo naartido xogta shakhsiga meesha ay macquul tahay.</p><h3>Xiriir</h3><p>Flattum Legesenter DA<br>Hønengata 70, 3515 Hønefoss<br>32 17 07 90<br><a href="mailto:flattum.legesenter@legepost.no">flattum.legesenter@legepost.no</a></p>',
+    lt: '<p>Flattum Legesenter DA yra atsakinga už asmens duomenų tvarkymą, kai susisiekiate telefonu, el. paštu arba per svetainę. Duomenys tvarkomi laikantis BDAR ir Norvegijos asmens duomenų apsaugos įstatymų.</p><p>Mes nerenkame asmens duomenų per internetines formas ar savo slapukus. Susisiekus galime tvarkyti jūsų vardą, kontaktinę informaciją ir jūsų pateiktus duomenis, įskaitant sveikatos informaciją, siekdami atsakyti į užklausas ir valdyti pacientų ryšius. Duomenys saugomi el. pašto ir medicininių įrašų sistemose ir tvarkomi konfidencialiai.</p><p>Svetainė nenaudoja savo slapukų, tačiau trečiųjų šalių turinys, pvz., „Google Maps", gali nustatyti slapukus pagal savo politiką.</p><p>Turite teisę susipažinti su savo asmens duomenimis, juos taisyti ir ištrinti ten, kur tai įmanoma.</p><h3>Kontaktai</h3><p>Flattum Legesenter DA<br>Hønengata 70, 3515 Hønefoss<br>32 17 07 90<br><a href="mailto:flattum.legesenter@legepost.no">flattum.legesenter@legepost.no</a></p>',
+  },
+
+  mourning_tooltip: {nb:'Til minne om Hans Majestet Kong Harald V',en:'In Memory of His Majesty King Harald V',ar:'تخليدًا لذكرى جلالة الملك هارالد الخامس',pl:'Ku pamięci Jego Królewskiej Mości Króla Haralda V',uk:'На честь пам’яті Його Величності Короля Гаральда V',so:'Xuska Boqor Harald V, Boqorkiisa Sarreeye',lt:'Jo Didenybės Karaliaus Haraldo V atminimui'},
+};
+
+/* ═══════════════════════════════════════════════════════════
+   FEATURE FLAGS
+   Toggle sections on/off without deleting the markup.
+   Set a flag to true to bring the section back.
+   ═══════════════════════════════════════════════════════════ */
+const FEATURE_FLAGS = {
+  absence: false, // "Fravær" (holidays/absence) section — set to true to re-enable
+};
+
+function applyFeatureFlags() {
+  Object.keys(FEATURE_FLAGS).forEach(function(flag) {
+    var enabled = FEATURE_FLAGS[flag];
+    document.querySelectorAll('[data-feature="' + flag + '"]').forEach(function(el) {
+      el.style.display = enabled ? '' : 'none';
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOURNING RIBBON
+   Shows next to the logo until the configured end date, then
+   removes itself automatically.
+   ═══════════════════════════════════════════════════════════ */
+var MOURNING_RIBBON_END = new Date('2026-10-13T23:59:00+02:00'); // 13 Oct 2026, 23:59 Norway time
+
+function initMourningRibbon() {
+  var wrap = document.getElementById('mourningRibbonWrap');
+  if (!wrap) return;
+
+  if (new Date() >= MOURNING_RIBBON_END) {
+    wrap.remove();
+    return;
+  }
+
+  var img = document.getElementById('mourningRibbonImg');
+  var tooltip = document.getElementById('mourningRibbonTooltip');
+  if (img) {
+    img.title = tr('mourning_tooltip');
+    img.setAttribute('aria-label', tr('mourning_tooltip'));
+  }
+  if (tooltip) tooltip.textContent = tr('mourning_tooltip');
+
+  wrap.addEventListener('click', function(e) {
+    e.stopPropagation();
+    wrap.classList.toggle('tooltip-open');
+  });
+  document.addEventListener('click', function(e) {
+    if (!wrap.contains(e.target)) wrap.classList.remove('tooltip-open');
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LANGUAGE ENGINE
+   ═══════════════════════════════════════════════════════════ */
+let currentLang = (function() {
+  try { return localStorage.getItem('fl_lang') || 'nb'; } catch(e) { return 'nb'; }
+})();
+
+function tr(key) {
+  if (!T[key]) return key;
+  return T[key][currentLang] || T[key]['nb'] || key;
+}
+
+function updateInfoCards() {
+  var now = new Date();
+  var day = now.getDay();
+  var hh = now.getHours() + now.getMinutes() / 60;
+  var dayKeys = ['hours_sun','hours_mon','hours_tue','hours_wed','hours_thu','hours_fri','hours_sat'];
+  var isWeekday = day >= 1 && day <= 5;
+  var isHoliday = getHolidayName(new Date(now.getFullYear(), now.getMonth(), now.getDate())) !== null;
+  var isOpenNow = isWeekday && !isHoliday && hh >= 8.5 && hh < 15;
+  var phoneHoursText = isWeekday ? ((day === 5) ? tr('qi_phone_hours_fri') : tr('qi_phone_hours_mth')) : tr('hours_closed');
+
+  var pcTodayLabel = document.getElementById('pcTodayLabel');
+  var pcStatusDot = document.getElementById('pcStatusDot');
+  var todayHoursEl = document.getElementById('todayHours');
+  var fullyClosed = !isWeekday || isHoliday;
+  if (pcTodayLabel) pcTodayLabel.textContent = fullyClosed ? tr('qi_closed_badge') : (isOpenNow ? tr('qi_open_short') : tr('hours_closed'));
+  if (pcStatusDot) pcStatusDot.className = 'status-dot ' + (isOpenNow ? 'status-dot--open' : 'status-dot--closed');
+  if (todayHoursEl) {
+    todayHoursEl.textContent = fullyClosed ? '' : '08:30–15:00';
+  }
+
+  var todayPhoneEl = document.getElementById('todayPhoneHours');
+  if (todayPhoneEl) todayPhoneEl.textContent = tr(dayKeys[day]) + ': ' + phoneHoursText;
+
+  var statusBadge   = document.getElementById('mobileStatusBadge');
+  var officeHoursEl = document.getElementById('mobileOfficeHours');
+  var phoneHoursEl  = document.getElementById('mobilePhoneHours');
+  if (statusBadge) {
+    var fullyClosed = !isWeekday || isHoliday;
+    if (fullyClosed) {
+      statusBadge.textContent = tr('qi_closed_badge');
+      statusBadge.className = 'hero__qi-badge hero__qi-badge--closed';
+      if (officeHoursEl) officeHoursEl.textContent = '';
+    } else if (isOpenNow) {
+      statusBadge.textContent = tr('qi_open_short');
+      statusBadge.className = 'hero__qi-badge hero__qi-badge--open';
+      if (officeHoursEl) officeHoursEl.textContent = '08:30–15:00';
+    } else {
+      statusBadge.textContent = tr('hours_closed');
+      statusBadge.className = 'hero__qi-badge hero__qi-badge--closed';
+      if (officeHoursEl) officeHoursEl.textContent = '08:30–15:00';
+    }
+    if (phoneHoursEl) phoneHoursEl.textContent = phoneHoursText;
+  }
+}
+
+function applyTranslations() {
+  const lang = LANGS[currentLang];
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir  = lang.dir;
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    el.textContent = tr(el.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    el.innerHTML = tr(el.getAttribute('data-i18n-html'));
+  });
+
+  // Translate week number labels + fade past weeks
+  var _now = new Date();
+  var _target = new Date(Date.UTC(_now.getFullYear(), _now.getMonth(), _now.getDate()));
+  var _dayNum = (_target.getUTCDay() + 6) % 7;
+  _target.setUTCDate(_target.getUTCDate() - _dayNum + 3);
+  var _firstThu = new Date(Date.UTC(_target.getUTCFullYear(), 0, 4));
+  var _currentWeek = 1 + Math.round(((_target - _firstThu) / 86400000 - 3 + (_firstThu.getUTCDay() + 6) % 7) / 7);
+  document.querySelectorAll('[data-week-num]').forEach(function(el) {
+    var num = el.getAttribute('data-week-num');
+    el.textContent = tr('week_prefix') + ' ' + num;
+    if (parseInt(num, 10) < _currentWeek) {
+      el.classList.add('absence-week--past');
+    } else {
+      el.classList.remove('absence-week--past');
+    }
+  });
+
+  updateInfoCards();
+
+  // Privacy modal
+  var privacyTitleEl = document.getElementById('privacyTitle');
+  var privacyBodyEl  = document.getElementById('privacyBody');
+  if (privacyTitleEl) privacyTitleEl.textContent = tr('privacy_title');
+  if (privacyBodyEl) {
+    var bodyText = T['privacy_body'][currentLang] || T['privacy_body']['nb'];
+    privacyBodyEl.innerHTML = bodyText;
+  }
+
+  buildWeeklyHoursTable();
+
+  var flagEl = document.getElementById('langBtnFlag');
+  if (flagEl) { flagEl.src = FLAGS[lang.flag]; }
+
+  document.querySelectorAll('.lang-disclaimer').forEach(function(el) {
+    el.style.display = currentLang === 'nb' ? 'none' : '';
+  });
+
+  document.querySelectorAll('[data-lang]').forEach(function(btn) {
+    var isActive = btn.getAttribute('data-lang') === currentLang;
+    btn.classList.toggle('active', isActive);
+  });
+  var mobileFlagEl = document.getElementById('mobileLangFlag');
+  if (mobileFlagEl) mobileFlagEl.src = FLAGS[lang.flag];
+  var mobileNameEl = document.getElementById('mobileLangName');
+  if (mobileNameEl) mobileNameEl.textContent = lang.native;
+
+  // Mourning ribbon tooltip text
+  var mourningImg = document.getElementById('mourningRibbonImg');
+  var mourningTooltip = document.getElementById('mourningRibbonTooltip');
+  if (mourningImg) {
+    mourningImg.title = tr('mourning_tooltip');
+    mourningImg.setAttribute('aria-label', tr('mourning_tooltip'));
+  }
+  if (mourningTooltip) mourningTooltip.textContent = tr('mourning_tooltip');
+}
+
+function setLang(code) {
+  currentLang = code;
+  try { localStorage.setItem('fl_lang', code); } catch(e) {}
+  applyTranslations();
+  closeLangDropdown();
+  closeMobile();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WEEKLY HOURS TABLE
+   ═══════════════════════════════════════════════════════════ */
+function getHolidayName(dateObj) {
+  var dd   = String(dateObj.getDate()).padStart(2, '0');
+  var mm   = String(dateObj.getMonth() + 1).padStart(2, '0');
+  var yyyy = dateObj.getFullYear();
+  var H    = T['holiday_names'];
+  var key = dd + '.' + mm + '.' + yyyy;
+  if (H[key]) return H[key][currentLang] || H[key]['nb'];
+  key = dd + '.' + mm;
+  if (H[key]) return H[key][currentLang] || H[key]['nb'];
+  return null;
+}
+
+function buildWeeklyHoursTable() {
+  var tbody   = document.getElementById('officeHoursTable');
+  var heading = document.getElementById('officeHoursHeading');
+  if (!tbody) return;
+
+  if (heading) heading.textContent = tr('hours_office_week');
+
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // JS day index → dayKeys index (Mon=0, Tue=1, Wed=2, Thu=3, Fri=4, Sat=5, Sun=6)
+  var jsToDayKey = {0: 6, 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5};
+
+  // Day keys for i18n
+  var dayKeys = ['hours_mon', 'hours_tue', 'hours_wed', 'hours_thu', 'hours_fri', 'hours_sat', 'hours_sun'];
+
+  var rows = '';
+  for (var i = 0; i < 7; i++) {
+    var d = new Date(today);
+    d.setDate(today.getDate() + i);
+
+    var jsDow  = d.getDay(); // 0=Sun … 6=Sat
+    var keyIdx = jsToDayKey[jsDow];
+    var isToday   = i === 0;
+    var isWeekend = (jsDow === 0 || jsDow === 6);
+    var holidayName = getHolidayName(d);
+    var isHoliday = holidayName !== null;
+    var isClosed  = isWeekend || isHoliday;
+
+    var dayName = tr(dayKeys[keyIdx]);
+    if (isToday) {
+      dayName = '<span class="today-day-cell"><strong>' + dayName + '</strong>'
+              + '<span class="today-badge">' + tr('hours_today_marker') + '</span></span>';
+    }
+
+    var timeCell;
+    if (isClosed) {
+      var closedText = tr('hours_closed');
+      // On weekends: show only "Stengt", no holiday annotation
+      if (isHoliday && !isWeekend) closedText += ' – ' + holidayName;
+      timeCell = '<span style="color:#b5bec9;">' + closedText + '</span>';
+    } else {
+      timeCell = '08:30 – 15:00';
+    }
+
+    rows += '<tr class="' + (isClosed ? 'closed' : '') + (isToday ? ' today-row' : '') + '">'
+          + '<td>' + dayName + '</td>'
+          + '<td>' + timeCell + '</td>'
+          + '</tr>';
+  }
+  tbody.innerHTML = rows;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BUILD LANGUAGE MENUS
+   ═══════════════════════════════════════════════════════════ */
+function buildLangMenus() {
+  var grid   = document.getElementById('langGrid');
+  var mobileGrid = document.getElementById('mobileLangGrid');
+  if (!grid || !mobileGrid) return;
+
+  Object.keys(LANGS).forEach(function(code) {
+    var info = LANGS[code];
+
+    var btn = document.createElement('button');
+    btn.setAttribute('data-lang', code);
+    btn.setAttribute('role', 'option');
+    btn.setAttribute('type', 'button');
+    btn.innerHTML =
+      '<img class="lang-grid__flag" src="' + FLAGS[info.flag] + '" alt="" aria-hidden="true">' +
+      '<span class="lang-grid__text">' +
+        '<span class="lang-grid__native">' + info.native + '</span>' +
+        '<span class="lang-grid__eng">'    + info.name   + '</span>' +
+      '</span>';
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      setLang(code);
+    });
+    grid.appendChild(btn);
+
+    var mbtn = btn.cloneNode(true);
+    mbtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      setLang(code);
+    });
+    mobileGrid.appendChild(mbtn);
+  });
+}
+
+function initMobileLangToggle() {
+  var btn   = document.getElementById('mobileLangBtn');
+  var panel = document.getElementById('mobileLangPanel');
+  if (!btn || !panel) return;
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var open = panel.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DROPDOWN TOGGLE
+   ═══════════════════════════════════════════════════════════ */
+function closeLangDropdown() {
+  var btn = document.getElementById('langBtn');
+  var dd  = document.getElementById('langDropdown');
+  if (!btn || !dd) return;
+  btn.classList.remove('open');
+  dd.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+}
+
+function initLangDropdown() {
+  var btn = document.getElementById('langBtn');
+  var dd  = document.getElementById('langDropdown');
+  if (!btn || !dd) return;
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = dd.classList.contains('open');
+    if (isOpen) {
+      closeLangDropdown();
+    } else {
+      dd.classList.add('open');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!btn.contains(e.target) && !dd.contains(e.target)) {
+      closeLangDropdown();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLangDropdown();
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HAMBURGER
+   ═══════════════════════════════════════════════════════════ */
+function closeMobile() {
+  var h = document.getElementById('hamburger');
+  var m = document.getElementById('mobileMenu');
+  if (!h || !m) return;
+  h.classList.remove('open');
+  m.classList.remove('open');
+  h.setAttribute('aria-expanded', 'false');
+  var langBtn = document.getElementById('mobileLangBtn');
+  var langPanel = document.getElementById('mobileLangPanel');
+  if (langBtn) { langBtn.classList.remove('open'); langBtn.setAttribute('aria-expanded', 'false'); }
+  if (langPanel) langPanel.classList.remove('open');
+}
+
+function initHamburger() {
+  var hamburger  = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (!hamburger || !mobileMenu) return;
+
+  hamburger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var open = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) closeLangDropdown();
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMobile();
+    }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAV SCROLL + ACTIVE LINK + SCROLL-TOP
+   ═══════════════════════════════════════════════════════════ */
+function initNav() {
+  var nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+  }
+
+  var navLinks = document.querySelectorAll('.nav__links a');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var id = e.target.id;
+        navLinks.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  document.querySelectorAll('section[id]').forEach(function(s) { observer.observe(s); });
+
+  var scrollTopBtn = document.getElementById('scrollTop');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', function() {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PRIVACY MODAL
+   ═══════════════════════════════════════════════════════════ */
+function openPrivacy() {
+  var overlay = document.getElementById('privacyOverlay');
+  if (overlay) overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePrivacy() {
+  var overlay = document.getElementById('privacyOverlay');
+  if (overlay) overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function initPrivacy() {
+  var btn       = document.getElementById('privacyBtn');
+  var closeBtn  = document.getElementById('privacyClose');
+  var overlay   = document.getElementById('privacyOverlay');
+  if (btn)      btn.addEventListener('click', openPrivacy);
+  if (closeBtn) closeBtn.addEventListener('click', closePrivacy);
+  if (overlay)  overlay.addEventListener('click', function(e) { if (e.target === overlay) closePrivacy(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePrivacy(); });
+}
+
+buildLangMenus();
+initLangDropdown();
+initMobileLangToggle();
+initHamburger();
+initNav();
+initPrivacy();
+applyFeatureFlags();
+applyTranslations();
+initMourningRibbon();
+setInterval(updateInfoCards, 60000);
+</script>
+
+</body>
+</html>
